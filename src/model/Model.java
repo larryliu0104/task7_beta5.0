@@ -98,43 +98,28 @@ public class Model {
 	}
 
 	public double[] getShare(int customerId, int fundId) throws RollbackException {
-		try {
-			Transaction.begin();
-			PositionBean position = positionDAO.getPosition(customerId, fundId);
-			double currentShare = position == null ? 0 : position.getShares();
-			double pendingShare = transactionDAO.getPendingShare(customerId, fundId);
-			double validShare = currentShare - pendingShare;
-			double[] values = new double[3];
-			values[0] = currentShare;
-			values[1] = pendingShare;
-			values[2] = validShare;
-			Transaction.commit();
-			return values;
-		} finally {
-			if (Transaction.isActive()) {
-				Transaction.rollback();
-			}
-		}
+		PositionBean position = positionDAO.getPosition(customerId, fundId);
+		double currentShare = position == null ? 0 : position.getShares();
+		double pendingShare = transactionDAO.getPendingShare(customerId, fundId);
+		double validShare = currentShare - pendingShare;
+		double[] values = new double[3];
+		values[0] = currentShare;
+		values[1] = pendingShare;
+		values[2] = validShare;
+		return values;
 	}
 
 	public double[] getAmount(int customerId) throws RollbackException {
-		try {
-			Transaction.begin();
-			CustomerBean customer = customerDAO.read(customerId);
-			double currentAmount = customer.getCash();
-			double pendingAmount = transactionDAO.getPendingAmount(customer.getId());
-			double validAmount = currentAmount - pendingAmount;
-			double[] values = new double[3];
-			values[0] = currentAmount;
-			values[1] = pendingAmount;
-			values[2] = validAmount;
-			Transaction.commit();
-			return values;
-		} finally {
-			if (Transaction.isActive()) {
-				Transaction.rollback();
-			}
-		}
+
+		CustomerBean customer = customerDAO.read(customerId);
+		double currentAmount = customer.getCash();
+		double pendingAmount = transactionDAO.getPendingAmount(customer.getId());
+		double validAmount = currentAmount - pendingAmount;
+		double[] values = new double[3];
+		values[0] = currentAmount;
+		values[1] = pendingAmount;
+		values[2] = validAmount;
+		return values;
 	}
 
 	public void processTransaction(Map<String, String> map, String newDate)
@@ -214,8 +199,8 @@ public class Model {
 		long myShares = positionDAO.getPosition(customer.getId(), fundId)
 		    .getShares();
 		long fundPrice = fundPriceDAO.getCurrentFundPrice(fundId).getPrice();
-		customer
-		    .setCash(customer.getCash() + (transaction.getShares() * fundPrice / 1000));
+		customer.setCash(customer.getCash()
+		    + (transaction.getShares() * fundPrice / 1000));
 		// update customer cash
 		customerDAO.update(customer);
 
@@ -341,25 +326,18 @@ public class Model {
 
 	public void commitDepositCheckTransaction(String userName, String amount)
 	    throws RollbackException {
-		try {
-			Transaction.begin();
 
-			CustomerBean customer = customerDAO.getCustomerByUserName(userName);
-			if (customer == null) {
-				Transaction.rollback();
+		CustomerBean customer = customerDAO.getCustomerByUserName(userName);
+		if (customer == null) {
+			Transaction.rollback();
 
-			}
-			TransactionBean transactionBean = new TransactionBean();
-			transactionBean.setCustomerId(customer.getId());
-			transactionBean.setAmount(((long) (100 * Double.parseDouble(amount))));
-			transactionBean.setTransactionType(Util.getDepositCheck());
-			transactionDAO.create(transactionBean);
-			Transaction.commit();
-		} finally {
-			if (Transaction.isActive()) {
-				Transaction.rollback();
-			}
 		}
+		TransactionBean transactionBean = new TransactionBean();
+		transactionBean.setCustomerId(customer.getId());
+		transactionBean.setAmount(((long) (100 * Double.parseDouble(amount))));
+		transactionBean.setTransactionType(Util.getDepositCheck());
+		transactionDAO.create(transactionBean);
+
 	}
 
 	public DetailedTransactionBean[] getCustomerTransactionHistory(String userName)
@@ -440,31 +418,23 @@ public class Model {
 
 	public DetailedFundBean[] getDetailFunds() throws RollbackException {
 		DetailedFundBean[] detailedFundBeans = null;
-		try {
-			Transaction.begin();
-			FundBean[] fundBeans = fundDAO.getFunds();
-			detailedFundBeans = new DetailedFundBean[fundBeans.length];
-			for (int i = 0; i < fundBeans.length; i++) {
-				detailedFundBeans[i] = new DetailedFundBean();
-				detailedFundBeans[i].setFundName(fundBeans[i].getName());
-				int id = fundBeans[i].getId();
-				detailedFundBeans[i].setFundId(id);
-				detailedFundBeans[i].setTicker(fundBeans[i].getTicker());
-				FundPriceBean currentFundPriceBean = fundPriceDAO
-				    .getCurrentFundPrice(id);
-				if (currentFundPriceBean != null) {
-					detailedFundBeans[i].setPrice(currentFundPriceBean
-					    .getPriceTwoDecimal());
-					detailedFundBeans[i].setDate(currentFundPriceBean.getPriceDate());
-				} else {
-					detailedFundBeans[i].setPrice("-");
-					detailedFundBeans[i].setDate("-");
-				}
+		FundBean[] fundBeans = fundDAO.getFunds();
+		detailedFundBeans = new DetailedFundBean[fundBeans.length];
+		for (int i = 0; i < fundBeans.length; i++) {
+			detailedFundBeans[i] = new DetailedFundBean();
+			detailedFundBeans[i].setFundName(fundBeans[i].getName());
+			int id = fundBeans[i].getId();
+			detailedFundBeans[i].setFundId(id);
+			detailedFundBeans[i].setTicker(fundBeans[i].getTicker());
+			FundPriceBean currentFundPriceBean = fundPriceDAO.getCurrentFundPrice(id);
+			if (currentFundPriceBean != null) {
+				detailedFundBeans[i]
+				    .setPrice(currentFundPriceBean.getPriceTwoDecimal());
+				detailedFundBeans[i].setDate(currentFundPriceBean.getPriceDate());
+			} else {
+				detailedFundBeans[i].setPrice("-");
+				detailedFundBeans[i].setDate("-");
 			}
-			Transaction.commit();
-		} finally {
-			if (Transaction.isActive())
-				Transaction.rollback();
 		}
 		return detailedFundBeans;
 	}
@@ -497,34 +467,28 @@ public class Model {
 
 	public void commitSellFund(int fundId, int customerId, long shareValue)
 	    throws RollbackException {
-		try {
-			Transaction.begin();
-			TransactionBean transactionBean = new TransactionBean();
-			transactionBean.setFundId(fundId);
 
-			transactionBean.setCustomerId(customerId);
-			transactionBean.setShares(shareValue);
+		TransactionBean transactionBean = new TransactionBean();
+		transactionBean.setFundId(fundId);
 
-			transactionBean.setTransactionType(Util.getSellFund());
-			Log.e("Model", "sell fund");
-			CustomerBean customer = customerDAO.read(transactionBean.getCustomerId());
-			PositionBean position = positionDAO.getPosition(customer.getId(),
-			    transactionBean.getFundId());
-			double currentShare = position.getShares();
-			double pendingShare = transactionDAO.getPendingShare(customer.getId(),
-			    transactionBean.getFundId());
-			double validShare = currentShare - pendingShare;
+		transactionBean.setCustomerId(customerId);
+		transactionBean.setShares(shareValue);
 
-			if (validShare < transactionBean.getShares()) {
-				Transaction.rollback();
-				throw new RollbackException("Not enough share");
-			}
-			transactionDAO.create(transactionBean);
-			Transaction.commit();
-		} finally {
-			if (Transaction.isActive())
-				Transaction.rollback();
+		transactionBean.setTransactionType(Util.getSellFund());
+		Log.e("Model", "sell fund");
+		CustomerBean customer = customerDAO.read(transactionBean.getCustomerId());
+		PositionBean position = positionDAO.getPosition(customer.getId(),
+		    transactionBean.getFundId());
+		double currentShare = position.getShares();
+		double pendingShare = transactionDAO.getPendingShare(customer.getId(),
+		    transactionBean.getFundId());
+		double validShare = currentShare - pendingShare;
+
+		if (validShare < transactionBean.getShares()) {
+			Transaction.rollback();
+			throw new RollbackException("Not enough share");
 		}
+		transactionDAO.create(transactionBean);
 	}
 
 }
