@@ -10,23 +10,18 @@ import model.Model;
 
 import org.genericdao.RollbackException;
 import org.genericdao.Transaction;
-import org.mybeans.form.FormBeanFactory;
 
 import controller.main.Action;
 import databean.CustomerBean;
-import formbean.SearchCustomerForm;
 
 public class EmployeeViewCustomerProfileAction extends Action {
 	private static final String ACTION_NAME = "employee_view_customer_profile.do";
 	private static final String VIEW_PROFILE_JSP_NAME = "employee_view_customer_profile.jsp";
 	private CustomerDAO customerDAO;
-	private FormBeanFactory<SearchCustomerForm> formBeanFactory;
-
-	// private static final String TAG = "EmployeeViewCustomerProfileAction";
 
 	public EmployeeViewCustomerProfileAction(Model model) {
 		customerDAO = model.getCustomerDAO();
-		// formBeanFactory = FormBeanFactory.getInstance(SearchCustomerForm.class);
+
 	}
 
 	@Override
@@ -39,7 +34,7 @@ public class EmployeeViewCustomerProfileAction extends Action {
 
 		List<String> errors = new ArrayList<String>();
 		request.setAttribute("errors", errors);
-		// SearchCustomerForm form;
+
 		try {
 			String userName = request.getParameter("userName");
 			if (userName == null) {

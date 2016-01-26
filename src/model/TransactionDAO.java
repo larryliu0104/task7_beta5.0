@@ -86,8 +86,9 @@ public class TransactionDAO extends GenericDAO<TransactionBean> {
 		}
 		for (TransactionBean t : transactions) {
 			if ((t.getTransactionType() != null)
-			    && (t.getTransactionType().equals(Util.getBuyFund())
-			    || t.getTransactionType().equals(Util.getRequestCheck()))) {
+			    && t.getExecuteDate() == null &&(t.getTransactionType().equals(Util.getBuyFund()) || t
+			        .getTransactionType().equals(Util.getRequestCheck()))) {
+				System.out.println("91Pending amount fraction: " + t.getAmount());
 				amount += t.getAmount();
 			}
 		}

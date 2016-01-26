@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import model.CustomerDAO;
 import model.Model;
-import model.TransactionDAO;
 
 import org.genericdao.RollbackException;
 import org.genericdao.Transaction;
@@ -17,26 +16,26 @@ import org.mybeans.form.FormBeanFactory;
 import util.Util;
 import controller.main.Action;
 import databean.CustomerBean;
-import databean.TransactionBean;
 import formbean.RequestCheckForm;
 
 public class CustomerRequestCheckAction extends Action {
 
+	private static final String FORMAT_STRING = "###,###,###,###,###,##0.00";
+	private static final String ACTION_NAME = "customer-request-check.do";
+	private static final String REQUES_CHECK_JSP = "customer-request-check.jsp";
 	private FormBeanFactory<RequestCheckForm> formBeanFactory;
 	private CustomerDAO customerDAO;
-	private TransactionDAO transactionDAO;
 	private Model model;
 
 	public CustomerRequestCheckAction(Model model) {
 		customerDAO = model.getCustomerDAO();
-		transactionDAO = model.getTransactionDAO();
 		formBeanFactory = FormBeanFactory.getInstance(RequestCheckForm.class);
 		this.model = model;
 	}
 
 	@Override
 	public String getName() {
-		return "customer-request-check.do";
+		return ACTION_NAME;
 	}
 
 	@Override
@@ -53,38 +52,32 @@ public class CustomerRequestCheckAction extends Action {
 			double currentAmount = arr[0] / 100;
 			double validAmount = arr[2] / 100;
 			request.setAttribute("currentAmount",
-			    Util.formatNumber(currentAmount, "###,###,###,###,###,##0.00"));
+			    Util.formatNumber(currentAmount, FORMAT_STRING));
 			request.setAttribute("validAmount",
-			    Util.formatNumber(validAmount, "###,###,###,###,###,##0.00"));
+			    Util.formatNumber(validAmount, FORMAT_STRING));
 
 			if (!form.isPresent()) {
-				return "customer-request-check.jsp";
+				return REQUES_CHECK_JSP;
 			}
-
 			errors.addAll(form.getValidationErrors());
 			if (errors.size() != 0) {
-				return "customer-request-check.jsp";
+				return REQUES_CHECK_JSP;
 			}
-
-			TransactionBean transactionBean = new TransactionBean();
-			transactionBean.setCustomerId(customer.getId());
-			transactionBean.setAmount((Long.parseLong(form.getAmount())) * 100);
-			transactionBean.setTransactionType(Util.getRequestCheck());
-			model.createTransaction((transactionBean));
-
+			model.commitRequestCheck(customer.getId(),
+			    (Long.parseLong(form.getAmount()) * 100));
 			request
 			    .setAttribute("message",
 			        "Thanks, we have accepted your request. Please wait until the Transition Day");
 			return "customer_success.jsp";
 		} catch (FormBeanException e) {
 			errors.add(e.toString());
-			return "customer-request-check.jsp";
+			return REQUES_CHECK_JSP;
 		} catch (RollbackException e) {
 			errors.add(e.getMessage());
-			return "customer-request-check.jsp";
+			return REQUES_CHECK_JSP;
 		} catch (NumberFormatException e) {
 			errors.add(e.toString());
-			return "customer-request-check.jsp";
+			return REQUES_CHECK_JSP;
 		} finally {
 			if (Transaction.isActive()) {
 				Transaction.rollback();

@@ -57,7 +57,7 @@
                                             Manage Account <span
 												class="caret"></span>
                                         </button>
-                                         <ul class="dropdown-menu"
+                                       <ul class="dropdown-menu"
 											aria-labelledby="dropdownMenu1" style="font-size: 16px">
                                             <li><a
 												href="customer-sell-fund.do?fundId=${share.getFundId()}">Sell
@@ -65,7 +65,7 @@
 
                                             <li><a
 												href="customer_buy_fund.do?fundId=${share.getFundId()}">Buy</li>
-                                        </ul> 
+                                        </ul>
                                     </div>
                                 </td>
 								</tr>

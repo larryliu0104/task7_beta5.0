@@ -30,6 +30,7 @@ public class CustomerViewAccountAction extends Action {
 	private CustomerDAO customerDAO;
 	private TransactionDAO transactionDAO;
 	private FundPriceDAO priceDAO;
+	private static final String FORMAT_STRING = "###,###,###,###,###,##0.00";
 
 	public CustomerViewAccountAction(Model model) {
 		positionDAO = model.getPositionDAO();
@@ -61,9 +62,9 @@ public class CustomerViewAccountAction extends Action {
 			Log.i("Customer View Account Action", "current Amount " + currentAmount);
 			Log.i("Customer View Account Action", "pending Amount " + pendingAmount);
 			request.setAttribute("currentAmount",
-			    Util.formatNumber(currentAmount, "###,###,###,###,###,###.00"));
+			    Util.formatNumber(currentAmount, FORMAT_STRING));
 			request.setAttribute("validAmount",
-			    Util.formatNumber(validAmount, "###,###,###,###,###,###.00"));
+			    Util.formatNumber(validAmount, FORMAT_STRING));
 			System.out.println("customer id: " + customer.getId());
 			PositionBean[] positionList = positionDAO
 			    .getPositionsByCustomerId(customer.getId());

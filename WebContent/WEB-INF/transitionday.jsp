@@ -11,9 +11,9 @@
 	<form role="form">
 		<div class="form-group">
 			<label for="exampleInputEmail1">
-				Last Transaction Day is ${lastTransactionDay }</label>
+				Last Transition Day is ${lastTransactionDay }</label>
 			<p>	
-			Please pick a new transaction day</p> 
+			Please pick a new transition day</p> 
 			<div class="col-sm-4" style="margin-left:-16px">
 			
 			<input type="date" class="form-control col-xs-4" name="date"

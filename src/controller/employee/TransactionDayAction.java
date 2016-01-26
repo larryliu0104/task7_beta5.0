@@ -24,9 +24,7 @@ import formbean.TransactionDayForm;
 public class TransactionDayAction extends Action {
 	private static final String TRANSACTION_DAY_JSP = "transitionday.jsp";
 	private static final String NAME = "employee-transition-day.do";
-	private static final String TAG = "Trans day action";
 	private FormBeanFactory<TransactionDayForm> formBeanFactory;
-
 	private Model model;
 
 	public TransactionDayAction(Model model) {

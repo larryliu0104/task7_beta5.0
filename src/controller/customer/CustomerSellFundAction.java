@@ -14,16 +14,19 @@ import org.genericdao.Transaction;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
+import util.Log;
 import util.Util;
 import controller.main.Action;
 import databean.CustomerBean;
 import databean.FundBean;
-import databean.TransactionBean;
 import formbean.SellFundForm;
 
 public class CustomerSellFundAction extends Action {
 	private static final String FUND_TRANSACTION_JSP = "customersellfund.jsp";
 	public static final String NAME = "customer-sell-fund.do";
+	private static final String TAG = "CustomerSellFundAction";
+	private static final String FORMAT_STRING = "###,###,###,###,###,##0.00";
+	private static final String FORMAT_STRING_THREE_DECIMAL = "###,###,###,###,###,##0.000";
 	private FormBeanFactory<SellFundForm> formBeanFactory;
 	private FundDAO fundDAO;
 	private CustomerDAO customerDAO;
@@ -70,21 +73,21 @@ public class CustomerSellFundAction extends Action {
 			double validAmount = amountValues[2];
 
 			request.setAttribute("currentAmount",
-			    Util.formatNumber(currentAmount, "###,###,###,###,###,##0.00"));
+			    Util.formatNumber(currentAmount, FORMAT_STRING));
 			request.setAttribute("validAmount",
-			    Util.formatNumber(validAmount, "###,###,###,###,###,##0.00"));
+			    Util.formatNumber(validAmount, FORMAT_STRING));
 
 			double[] shareValues = model.getShare(customer.getId(), fundId);
 			double currentShare = shareValues[0] * 1.0 / 1000.0;
 			double pendingShare = shareValues[1] * 1.0 / 1000.0;
 			double validShare = shareValues[2] * 1.0 / 1000.0;
 			request.setAttribute("currentShare",
-			    Util.formatNumber(currentShare, "###,###,###,###,###,##0.000"));
+			    Util.formatNumber(currentShare, FORMAT_STRING_THREE_DECIMAL));
 			request.setAttribute("pendingShare",
-			    Util.formatNumber(pendingShare, "###,###,###,###,###,##0.000"));
-			System.out.println("pendingShare: " + pendingShare);
+			    Util.formatNumber(pendingShare, FORMAT_STRING_THREE_DECIMAL));
+			Log.i(TAG, "pendingShare: " + pendingShare);
 			request.setAttribute("validShare",
-			    Util.formatNumber(validShare, "###,###,###,###,###,##0.000"));
+			    Util.formatNumber(validShare, FORMAT_STRING_THREE_DECIMAL));
 
 			SellFundForm form = formBeanFactory.create(request);
 			if (!form.isPresent()) {
@@ -96,16 +99,8 @@ public class CustomerSellFundAction extends Action {
 
 				return FUND_TRANSACTION_JSP;
 			}
-			System.out.println("sell fund 113");
-			TransactionBean transactionBean = new TransactionBean();
-			transactionBean.setFundId(fundId);
-			System.out.println("sell fund 116");
-			transactionBean.setCustomerId(customer.getId());
-			transactionBean.setShares((long) (form.getShareValue() * 1000));
-			System.out.println("sell fund 117");
-
-			transactionBean.setTransactionType(Util.getSellFund());
-			model.createTransaction(transactionBean);
+			model.commitSellFund(fundId, customer.getId(),
+			    (long) (form.getShareValue() * 1000));
 
 			request.setAttribute("message", "Thanks, we have accepted your request.");
 			return "customer_success.jsp";

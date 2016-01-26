@@ -196,7 +196,7 @@ h1, h2, h3, h4 {
                             </button>
                             <button type="button" class="btn btn-default"
                                 style="width: 237px">
-                                <a href="employee-transition-day.do">Transaction Day </a>
+                                <a href="employee-transition-day.do">Transition Day </a>
                             </button>
                         </div>
 

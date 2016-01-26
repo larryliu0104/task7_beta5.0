@@ -7,8 +7,6 @@ import org.mybeans.form.FormBean;
 
 import com.google.gson.Gson;
 
-import util.Util;
-
 public class BuyFundForm extends FormBean {
 	private String amount;
 	private String action;
@@ -54,32 +52,23 @@ public class BuyFundForm extends FormBean {
 		this.amount = amount;
 	}
 
-
 	public void getAmountErrors(List<String> errors) {
 		if (amount == null) {
 			errors.add("amount is required");
 			return;
 		}
-
-		/*
-		if (amount.indexOf(".") != -1
-				&& (amount.length() - 1 - amount.indexOf(".")) > 2) {
-			errors.add("amount is tracked to 2 decimal places ");
-			return;
-		}
-		*/
 		double amountValue = 0;
 		try {
 			amountValue = Double.valueOf(amount);
 		} catch (Exception e) {
-			errors.add("Numbers and decimal place only. No commas, letters or symbols.");
+			errors
+			    .add("Numbers and decimal place only. No commas, letters or symbols.");
 			return;
 		}
-		if(amountValue<=0) {
+		if (amountValue <= 0) {
 			errors.add("amount must be greater than zero");
 			return;
-			
+
 		}
 	}
 }
-

@@ -22,7 +22,6 @@ public class ShareInformationBean {
 
 	public String getAmountTwoDecimal() {
 		DecimalFormat df = new DecimalFormat("0.00");
-		System.out.println("Share:" + getShareAmount());
 		return df.format(Double.parseDouble(getShareAmount()) * 1.0 / 100);
 	}
 
