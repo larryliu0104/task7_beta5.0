@@ -85,7 +85,7 @@ public class TransactionDAO extends GenericDAO<TransactionBean> {
 			return amount;
 		}
 		for (TransactionBean t : transactions) {
-			if ((t.getTransactionType() == null)
+			if ((t.getTransactionType() != null)
 			    && (t.getTransactionType().equals(Util.getBuyFund())
 			    || t.getTransactionType().equals(Util.getRequestCheck()))) {
 				amount += t.getAmount();
