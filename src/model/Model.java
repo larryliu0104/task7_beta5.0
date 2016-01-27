@@ -490,5 +490,82 @@ public class Model {
 		}
 		transactionDAO.create(transactionBean);
 	}
+	
+	public ArrayList<DetailedTransactionBean> getTransactionHistory()
+		    throws RollbackException {
+			ArrayList<DetailedTransactionBean> detailedTransactionBeans = new ArrayList<DetailedTransactionBean>();
+			try {
+				Transaction.begin();
+				for (CustomerBean customer : customerDAO.getAllCustomers()) {
+
+					ArrayList<TransactionBean> transactions = transactionDAO
+					    .getTransactionsByCustomerId(customer.getId());
+
+					Log.i(TAG, "transaction length " + transactions.size());
+					for (int i = 0; i < transactions.size(); i++) {
+						DetailedTransactionBean detail = new DetailedTransactionBean();
+						TransactionBean transaction = transactions.get(i);
+						detail.setTransactionType(transaction.getTransactionType());
+
+						// customer info
+						detail.setUserName(customer.getUserName());
+						detail.setFirstName(customer.getFirstName());
+						detail.setLastName(customer.getLastName());
+
+						// status
+						if (transaction.getExecuteDate() == null) {
+							detail.setStatus("Pending");
+
+						} else {
+							detail.setStatus("Completed " + detail.getTransactionType());
+							detail.setExecuteDay(transaction.getExecuteDate());
+						}
+
+						// deposit & request check
+						if (transaction.getTransactionType().equals(Util.getDepositCheck())
+						    || transaction.getTransactionType()
+						        .equals(Util.getRequestCheck())) {
+
+							detail.setAmount(transaction.getAmountTwoDecimal());
+
+							// buy & sell fund
+						} else if (transaction.getTransactionType().equals(Util.getBuyFund())
+						    || transaction.getTransactionType().equals(Util.getSellFund())) {
+
+							// buy fund
+							if (transaction.getTransactionType().equals(Util.getBuyFund())) {
+								if (transaction.getExecuteDate() != null) {
+									detail.setShares(transaction.getSharesThreeDecimal());
+									detail.setPrice(transaction.getPriceTwoDecimal());
+								}
+								// if not executed, only has amount
+								detail.setAmount(transaction.getAmountTwoDecimal());
+
+								// sell fund
+							} else if (transaction.getTransactionType().equals(
+							    Util.getSellFund())) {
+								if (transaction.getExecuteDate() != null) {
+									detail.setAmount(transaction.getAmountTwoDecimal());
+									detail.setPrice(transaction.getPriceTwoDecimal());
+								}
+								// if not executed, only has shares
+								detail.setShares(transaction.getSharesThreeDecimal());
+							}
+							// set fund
+							FundBean fund = fundDAO.getFundById(transaction.getFundId());
+							detail.setFundName(fund.getName());
+							detail.setFundTicker(fund.getTicker());
+
+						}
+						detailedTransactionBeans.add(detail);
+					}
+				}
+				Transaction.commit();
+			} finally {
+				if (Transaction.isActive())
+					Transaction.rollback();
+			}
+			return detailedTransactionBeans;
+		}
 
 }

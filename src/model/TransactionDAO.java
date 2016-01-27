@@ -113,5 +113,8 @@ public class TransactionDAO extends GenericDAO<TransactionBean> {
 		}
 		return (double) share;
 	}
+	public TransactionBean[] getAllTransactions() throws RollbackException{
+		return match();
+	}
 
 }

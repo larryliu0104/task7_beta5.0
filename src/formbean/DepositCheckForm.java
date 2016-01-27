@@ -15,6 +15,7 @@ public class DepositCheckForm extends FormBean {
 		checkMissingInput(errors);
 		if (!Util.matchTwoDecimalInput(amount)) {
 			errors.add("Deposit check amount should have at most two decimal places");
+			return errors;
 		}
 		if (Double.parseDouble(amount) > 1000000) {
 			errors.add("Deposit should be less than 1000000");

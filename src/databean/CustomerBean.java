@@ -18,7 +18,7 @@ public class CustomerBean {
 	private String city = null;
 	private String state = null;
 	private String zip = null;
-	private long cash = 10000;
+	private long cash = 0;
 	private static final String TAG = "Customer bean";
 
 	public int getId() {

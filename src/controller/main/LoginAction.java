@@ -71,6 +71,7 @@ public class LoginAction extends Action {
 				    .getUserName());
 				if (employee == null) {
 					errors.add("User name not found");
+					return LOGIN_JSP;
 				}
 
 				if (!employee.getPassword().equals(form.getPassword())) {

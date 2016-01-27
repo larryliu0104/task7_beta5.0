@@ -33,6 +33,7 @@ import controller.employee.ResetCustomerPwdAction;
 import controller.employee.ResetEmployeePwdAction;
 import controller.employee.SearchCustomerAction;
 import controller.employee.TransactionDayAction;
+import controller.employee.ViewAllHistoryAction;
 import controller.employee.ViewCustomerTransactionHistoryAction;
 import databean.CustomerBean;
 import databean.EmployeeBean;
@@ -72,6 +73,7 @@ public class Controller extends HttpServlet {
 			Action.add(new DepositCheckAction(model));
 			Action.add(new ViewCustomerTransactionHistoryAction(model));
 			Action.add(new EmployeeViewCustomerProfileAction(model));
+			Action.add(new ViewAllHistoryAction(model));
 
 			// customer
 			Action.add(new CustomerSearchFundAction(model));

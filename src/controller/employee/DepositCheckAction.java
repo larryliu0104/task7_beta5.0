@@ -61,6 +61,7 @@ public class DepositCheckAction extends Action {
 			errors.addAll(form.getValidationErrors());
 			if (Double.parseDouble(form.getAmount()) < 0) {
 				errors.add("please input positive number");
+				return FUND_TRANSACTION_JSP;
 			}
 			if (errors.size() != 0) {
 				return FUND_TRANSACTION_JSP;

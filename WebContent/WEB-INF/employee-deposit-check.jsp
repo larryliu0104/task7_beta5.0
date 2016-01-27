@@ -31,7 +31,7 @@
 			</div>
 		</form>
 		<p style="color: grey">*Please enter a positive number. </p>
-		<p style="color: grey">The decimal places should be less than 2.</p>
+		<p style="color: grey">The decimal places should be no more than 2.</p>
 		<br> <br>
 
 	</div>
