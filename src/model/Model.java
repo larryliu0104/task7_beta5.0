@@ -167,6 +167,7 @@ public class Model {
 		for (FundBean fund : funds) {
 			FundPriceBean price = new FundPriceBean();
 			price.setFundId(fund.getId());
+			//System.out.println("170 ");
 			price.setPrice((long) (100 * Double.parseDouble(map.get(Integer
 			    .toString(fund.getId())))));
 			price.setPriceDate(date);
@@ -200,8 +201,8 @@ public class Model {
 		long myShares = positionDAO.getPosition(customer.getId(), fundId)
 		    .getShares();
 		long fundPrice = fundPriceDAO.getCurrentFundPrice(fundId).getPrice();
-		customer.setCash(customer.getCash()
-		    + (transaction.getShares() * fundPrice / 1000));
+		long getInCash = Math.round(transaction.getShares() * fundPrice * 1.0 / 1000.0);
+		customer.setCash(customer.getCash() + getInCash);
 		// update customer cash
 		customerDAO.update(customer);
 
@@ -209,7 +210,7 @@ public class Model {
 		int customerId = transaction.getCustomerId();
 
 		transaction.setPrice(fundPrice);
-		transaction.setAmount(transaction.getShares() * fundPrice / 1000);
+		transaction.setAmount(getInCash);
 		transaction.setExecuteDate(newDate);
 		transactionDAO.update(transaction);
 
@@ -234,7 +235,7 @@ public class Model {
 		int customerId = transaction.getCustomerId();
 		int fundId = transaction.getFundId();
 		long fundPrice = fundPriceDAO.getCurrentFundPrice(fundId).getPrice();
-		long shares = transaction.getAmount() / fundPrice * 1000;
+		long shares = (long)Math.round(((transaction.getAmount() * 1000.0) / (fundPrice * 1.0)));
 		CustomerBean customerBean = customerDAO.read(transaction.getCustomerId());
 
 		customerBean.setCash(customerBean.getCash() - transaction.getAmount());
