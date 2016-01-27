@@ -4,7 +4,7 @@
 <jsp:include page="employee-top.jsp" />
 
 <div class="panel-heading">
-	<h3 class="panel-title">Update Transaction Information</h3>
+	<h3 class="panel-title">Update Transition Information</h3>
 </div>
 <div class="panel-body">
 	<jsp:include page="template-result.jsp" /><br> <br>
@@ -53,7 +53,7 @@
 
 		<!-- <p style="color: grey"> *Please enter numbers with no more than 2 digits after the decimal </p> -->
 		<br> <br>
-		<button type="submit" class="btn btn-primary">Update</button>
+		<button type="submit" class="btn btn-primary">Execute</button>
 	</form>
 </div>
 

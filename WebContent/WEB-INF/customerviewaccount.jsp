@@ -51,21 +51,12 @@
 									<td>
 									<div class="dropdown">
                                         <button
-											class="btn btn-primary dropdown-toggle" type="button"
-											id="dropdownMenu1" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="true">
-                                            Manage Account <span
-												class="caret"></span>
-                                        </button>
-                                       <ul class="dropdown-menu"
-											aria-labelledby="dropdownMenu1" style="font-size: 16px">
-                                            <li><a
+											class="btn btn-default" type="button">
+                                           <a
 												href="customer-sell-fund.do?fundId=${share.getFundId()}">Sell
-                                            </a></li>
-
-                                            <li><a
-												href="customer_buy_fund.do?fundId=${share.getFundId()}">Buy</li>
-                                        </ul>
+                                            </a>
+                                        </button>
+                                      
                                     </div>
                                 </td>
 								</tr>

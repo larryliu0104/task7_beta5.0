@@ -125,7 +125,7 @@ h1, h2, h3, h4 {
             "dom" : '<"top"f>rt<"bottom"lip><"clear">',
             "aoColumnDefs" : [ {
                 "bSortable" : false,
-                "aTargets" : [ 3, 4 ]
+                "aTargets" : [ 3 ]
             } ]
         });
         $('#transaction').DataTable({

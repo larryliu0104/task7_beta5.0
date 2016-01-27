@@ -7,6 +7,8 @@ import org.mybeans.form.FormBean;
 
 import com.google.gson.Gson;
 
+import util.Util;
+
 public class RequestCheckForm extends FormBean {
 	private String amount;
 	private String action;
@@ -19,7 +21,9 @@ public class RequestCheckForm extends FormBean {
 		if (!isRequest()) {
 			errorList.add("Invalid action");
 		}
-
+		if (!Util.matchTwoDecimalInput(amount)) {
+			errorList.add("Deposit check amount should have at most two decimal places");
+		}
 		if (errorList.size() > 0) {
 			return errorList;
 		}

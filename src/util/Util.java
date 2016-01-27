@@ -16,8 +16,10 @@ public class Util {
 	public static boolean matchTwoDecimalInput(String input) {
 		return input.matches("\\d+(\\.\\d{1,2})?");
 	}
-
-	// 前面的人早返回-1
+	public static boolean matchThreeDecimalInput(String input) {
+		return input.matches("\\d+(\\.\\d{1,2,3})?");
+	}
+	
 	public static int compareDateStrings(String oldDate, String newDate) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date start = null;

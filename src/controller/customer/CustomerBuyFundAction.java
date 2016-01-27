@@ -94,9 +94,6 @@ public class CustomerBuyFundAction extends Action {
 		} catch (RollbackException e) {
 			errors.add(e.getMessage());
 			return CURRENT_OPERATION_JSP;
-		} catch (NumberFormatException e) {
-			errors.add(e.toString());
-			return CURRENT_OPERATION_JSP;
 		} finally {
 			if (Transaction.isActive()) {
 				Transaction.rollback();

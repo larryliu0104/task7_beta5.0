@@ -7,6 +7,8 @@ import org.mybeans.form.FormBean;
 
 import com.google.gson.Gson;
 
+import util.Util;
+
 public class BuyFundForm extends FormBean {
 	private String amount;
 	private String action;
@@ -19,7 +21,9 @@ public class BuyFundForm extends FormBean {
 		if (!isBuy()) {
 			errors.add("Invalid action");
 		}
-
+		if (!Util.matchTwoDecimalInput(amount)) {
+			errors.add("Deposit check amount should have at most two decimal places");
+		}
 		if (errors.size() > 0) {
 			return errors;
 		}

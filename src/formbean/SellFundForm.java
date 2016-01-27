@@ -7,6 +7,8 @@ import org.mybeans.form.FormBean;
 
 import com.google.gson.Gson;
 
+import util.Util;
+
 public class SellFundForm extends FormBean {
 	private String shares;
 	private String action;
@@ -19,7 +21,9 @@ public class SellFundForm extends FormBean {
 		if (!isSell()) {
 			errorList.add("Action is invalid");
 		}
-
+		if (!Util.matchThreeDecimalInput(shares)) {
+			errorList.add("Deposit check amount should have at most three decimal places");
+		}
 		if (errorList.size() > 0) {
 			return errorList;
 		}

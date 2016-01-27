@@ -141,7 +141,7 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="box clearfix">
-					<h3>Search a fund and choose operation</h3>
+					<h3>Search a fund and choose operation, Please click on fund name to see performance graphs</h3>
 					<p></p>
 					<table class="table table-hover" id="bootstrap-table"">
 						<thead>
