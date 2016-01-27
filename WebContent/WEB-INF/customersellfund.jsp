@@ -55,6 +55,8 @@
    					</div>
   				</div>
 			</form>
+		<p style="color: grey">*Please enter a positive number. </p>
+		<p style="color: grey">The decimal places should be no more than 3.</p>
 			<br></br>
 		</div>
 <%--     </c:if> --%>

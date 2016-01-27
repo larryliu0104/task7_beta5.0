@@ -23,6 +23,7 @@ import controller.customer.CustomerResearchFundAction;
 import controller.customer.CustomerSearchFundAction;
 import controller.customer.CustomerSellFundAction;
 import controller.customer.CustomerViewAccountAction;
+import controller.customer.CustomerViewFund;
 import controller.customer.CustomerViewTransactionHistoryAction;
 import controller.employee.CreateCustomerAccountAction;
 import controller.employee.CreateEmployeeAccountAction;
@@ -85,6 +86,7 @@ public class Controller extends HttpServlet {
 			Action.add(new CustomerBuyFundAction(model));
 			Action.add(new ChangeCustomerPasswordAction(model));
 			Action.add(new CustomerResearchFundAction(model));
+			Action.add(new CustomerViewFund(model));
 
 			// logout
 			Action.add(new LoginAction(model));

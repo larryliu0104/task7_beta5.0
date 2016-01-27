@@ -28,6 +28,8 @@
 				<button type="submit" class="btn btn btn-primary" name="action"
 					value="request">Submit</button>
 			</form>
+			<p style="color: grey">*Please enter a positive number. </p>
+		    <p style="color: grey">The decimal places should be no more than 2.</p>
 			<br></br>
 			<br>
 		</div>

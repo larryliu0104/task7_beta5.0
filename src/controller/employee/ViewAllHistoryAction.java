@@ -10,6 +10,7 @@ import model.Model;
 import org.genericdao.RollbackException;
 import org.genericdao.Transaction;
 
+import util.Log;
 import controller.main.Action;
 import databean.DetailedTransactionBean;
 
@@ -38,10 +39,13 @@ public class ViewAllHistoryAction extends Action {
 
 			ArrayList<DetailedTransactionBean> detailedTransactionBeans = model
 			    .getTransactionHistory();
-			request.setAttribute("transactions", detailedTransactionBeans);
-			if (detailedTransactionBeans == null
-			    || detailedTransactionBeans.size() == 0) {
-
+			Log.i("View all history", "" + detailedTransactionBeans.size());
+			DetailedTransactionBean[] transactions = new DetailedTransactionBean[detailedTransactionBeans
+			    .size()];
+			detailedTransactionBeans.toArray(transactions);
+			request.setAttribute("transactions", transactions);
+			Log.i("View all history", "" + transactions.length);
+			if (transactions == null || transactions.length == 0) {
 				return VIEW_HISTORY_JSP;
 			}
 

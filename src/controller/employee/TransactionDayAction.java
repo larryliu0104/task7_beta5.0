@@ -106,7 +106,7 @@ public class TransactionDayAction extends Action {
 			return TRANSACTION_DAY_JSP;
 		} catch (RollbackException e) {
 			e.printStackTrace();
-			errors.add(e.toString());
+			errors.add("Please go back to choose a valid date");
 		} catch (FormBeanException e) {
 			e.printStackTrace();
 			errors.add(e.toString());

@@ -129,7 +129,8 @@ public class Model {
 			Transaction.begin();
 			if (Util.compareDateStrings(newDate, getLastTransactionDay()) <= 0) {
 				Transaction.rollback();
-				return;
+				throw new RollbackException("Invalid date");
+				//return;
 			}
 			updatePrices(map, newDate);
 			TransactionBean[] transactions = transactionDAO.getTransactions();
@@ -266,8 +267,7 @@ public class Model {
 			TransactionBean transactionBean = new TransactionBean();
 			transactionBean.setFundId(fundId);
 			transactionBean.setCustomerId(customerId);
-			Long a = Long.valueOf(amount);
-			transactionBean.setAmount((long) (a) * 100);
+			transactionBean.setAmount((long)(100 * Double.valueOf(amount)));
 			transactionBean.setTransactionType(Util.getBuyFund());
 			CustomerBean customer = customerDAO.read(transactionBean.getCustomerId());
 			double currentAmount = customer.getCash();

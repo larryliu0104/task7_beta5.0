@@ -137,6 +137,15 @@ h1, h2, h3, h4 {
                 "aTargets" : [ 4 ]
             } ]
         });
+        $('#all').DataTable({
+            "lengthMenu" : [ [ 5, 10, -1 ], [ 5, 10, "All" ] ],
+            /* "dom": '<"top"i>rt<"bottom"flp><"clear">', */
+            "dom" : '<"top"f>rt<"bottom"lip><"clear">',
+            "aoColumnDefs" : [ {
+                "bSortable" : false,
+                "aTargets" : [ 4 ]
+            } ]
+        });
         /*      $("#searchbox").keyup(function() {
         
          filterGlobal();
@@ -198,6 +207,10 @@ h1, h2, h3, h4 {
                                 style="width: 237px">
                                 <a href="employee-transition-day.do">Transition Day </a>
                             </button>
+                            <button type="button" class="btn btn-default"
+                                style="width: 237px">
+                                <a href="employee-view-all-transactions.do">View Transaction History </a>
+                            </button>                            
                         </div>
 
                         <!-- <ul class="nav nav-pills nav-stacked" style="font-size: 16px">

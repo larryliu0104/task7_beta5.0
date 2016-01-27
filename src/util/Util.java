@@ -17,7 +17,7 @@ public class Util {
 		return input.matches("\\d+(\\.\\d{1,2})?");
 	}
 	public static boolean matchThreeDecimalInput(String input) {
-		return input.matches("\\d+(\\.\\d{1,2,3})?");
+		return input.matches("\\d+(\\.\\d{1,3})?");
 	}
 	
 	public static int compareDateStrings(String oldDate, String newDate) {

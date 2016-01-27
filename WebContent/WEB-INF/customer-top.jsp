@@ -140,6 +140,9 @@ h1, h2, h3, h4 {
 								<a href="customer_search_fund.do">Buy/Research fund</a>
 							</button>
 							<button type="button" class="btn btn-default">
+								<a href="customer_view_fund.do">Sell fund</a>
+							</button>
+							<button type="button" class="btn btn-default">
 								<a href="customer-request-check.do">Request check</a>
 							</button>
 						</div>
