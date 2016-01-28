@@ -25,8 +25,8 @@ public class CustomerSellFundAction extends Action {
 	private static final String FUND_TRANSACTION_JSP = "customersellfund.jsp";
 	public static final String NAME = "customer-sell-fund.do";
 	private static final String TAG = "CustomerSellFundAction";
-	private static final String FORMAT_STRING = "###,###,###,###,###,##0.00";
-	private static final String FORMAT_STRING_THREE_DECIMAL = "###,###,###,###,###,##0.000";
+	private static final String FORMAT_STRING = "#,##0.00";
+	private static final String FORMAT_STRING_THREE_DECIMAL = "#,##0.000";
 	private FormBeanFactory<SellFundForm> formBeanFactory;
 	private FundDAO fundDAO;
 	private CustomerDAO customerDAO;

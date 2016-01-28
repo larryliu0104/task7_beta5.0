@@ -39,14 +39,14 @@
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="col-sm-3 control-label">Fund Name</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="inputEmail3" name="name"
+					<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,10}" class="form-control" id="inputEmail3" name="name"
 						placeholder="Please input fund name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-3 control-label">Ticker</label>
 				<div class="col-sm-8">
-					<input type="text"  name="ticker" class="form-control" id="inputPassword3"
+					<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,10}" name="ticker" class="form-control" id="inputPassword3"
 						placeholder="Please input Ticker">
 				</div>
 			</div>

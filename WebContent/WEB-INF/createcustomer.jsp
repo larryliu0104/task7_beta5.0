@@ -24,15 +24,15 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="exampleInputEmail1">User Name</label><input type="text"
-                    class="form-control" name="userName" value=${form.userName} >
+                   pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="userName" value=${form.userName} >
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label><input type="text"
-                    class="form-control" name="firstName" value=${form.firstName}>
+                   pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="firstName" value=${form.firstName}>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Last Name</label><input type="text"
-                    class="form-control" name="lastName" value=${form.lastName}>
+                   pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="lastName" value=${form.lastName}>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label><input
@@ -48,17 +48,17 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="exampleInputEmail1">Address Line 1</label><input
-                    type="text" class="form-control" name="addressLine1"
+                    pattern="([[a-zA-Z]\s{0,1}]*){1,25}" type="text" class="form-control" name="addressLine1"
                     value=${form.addressLine1}>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Address Line 2</label><input
-                    type="text" class="form-control" name="addressLine2"
+                    pattern="([[a-zA-Z]\s{0,1}]*){1,25}" type="text" class="form-control" name="addressLine2"
                     value=${form.addressLine2}>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">City</label><input type="text"
-                    class="form-control" name="city" value=${form.city}>
+                    pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="city" value=${form.city}>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">State</label>

@@ -121,7 +121,7 @@ h1, h2, h3, h4 {
 										<label for="exampleInputEmail1" class="col-sm-6 control-label">User
 											Name/Email</label>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" name="userName">
+											<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="userName">
 										</div>
 									</div>
 									<div class="form-group">
@@ -148,7 +148,7 @@ h1, h2, h3, h4 {
 								<label for="exampleInputEmail1" class="col-sm-6 control-label">User
 									Name/Email</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="userName">
+									<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="userName">
 								</div>
 							</div>
 							<div class="form-group">

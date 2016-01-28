@@ -27,12 +27,12 @@
 				<label for="exampleInputEmail1" class="col-sm-6 control-label">User
 					Name</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="userName"
+					<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="userName"
 						value=${form.userName}>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputEmail1" class="col-sm-6 control-label">First
+				<label for="exampleInputEmail1" pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="col-sm-6 control-label">First
 					Name</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="firstName"
@@ -43,7 +43,7 @@
 				<label for="exampleInputEmail1" class="col-sm-6 control-label">Last
 					Name</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="lastName"
+					<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="lastName"
 						value=${form.lastName}>
 				</div>
 			</div>

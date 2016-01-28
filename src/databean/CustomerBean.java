@@ -106,7 +106,7 @@ public class CustomerBean {
 	}
 
 	public String getCashTwoDecimal() {
-		DecimalFormat df = new DecimalFormat("#,##0.00");
+		DecimalFormat df = new DecimalFormat("0.00");
 		String res = df.format((getCash() * 1.0 / 100.0));
 		Log.i(TAG, " CASH " + getCash() + " two deci cash " + res);
 		return res;

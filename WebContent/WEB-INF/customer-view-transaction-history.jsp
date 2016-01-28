@@ -1,5 +1,7 @@
 <jsp:include page="customer-top.jsp" />
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<div class="panel-heading">
 		<h3 class="panel-title"><b>Transaction history</b></h3>
 	</div>
@@ -20,8 +22,8 @@
 								<th >Date</th>
 								<th >Fund name</th>
 								<th style="text-align:right">Shares</th>
-								<th style="text-align:right">Price</th>
-								<th style="text-align:right">Amount</th>
+								<th style="text-align:right">Price($)</th>
+								<th style="text-align:right">Amount($)</th>
 								<th></th>
 								<th >Operation</th>
 							</tr>
@@ -31,9 +33,17 @@
 								<tr>
 									<td >${transaction.getExecuteDay()}</td>
 									<td >${transaction.getFundName()}</td>
-									<td align="right">${transaction.getShares()}</td>
+									<td align="right">
+									
+									<fmt:formatNumber type="number" 
+            maxFractionDigits="3"  minFractionDigits="3" value="${transaction.getAmount()}" />
+            
+									</td>
 									<td align="right">${transaction.getPrice()}</td>
-									<td align="right">${transaction.getAmount()}</td>
+									<td align="right">
+									<fmt:formatNumber type="number" 
+            maxFractionDigits="3"  minFractionDigits="2" value="${transaction.getAmount()}" />
+									</td>
 									<td></td>
 									<td >${transaction.getTransactionType()}</td>
 								</tr>

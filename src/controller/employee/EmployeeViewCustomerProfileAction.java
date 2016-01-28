@@ -69,7 +69,7 @@ public class EmployeeViewCustomerProfileAction extends Action {
 			PositionBean[] positionList = positionDAO
 				    .getPositionsByCustomerId(customer.getId());
 				if (positionList == null) {
-					return "customerviewaccount.jsp";
+					return  VIEW_PROFILE_JSP_NAME;
 				}
 				ShareInformationBean[] shareList = model.getShares(customer.getId());
 				String lastTransactionDay = null;

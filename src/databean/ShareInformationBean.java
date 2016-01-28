@@ -22,7 +22,7 @@ public class ShareInformationBean {
 
 	public String getAmountTwoDecimal() {
 		//return Util.formatNumber(Long.parseLong(getShareAmount()) * 1.0 / 100, Util.FORMAT_STRING_TWO);
-		DecimalFormat df = new DecimalFormat("#,##0.00");
+		DecimalFormat df = new DecimalFormat("0.00");
 		return df.format(Double.parseDouble(getShareAmount()) * 1.0 / 100);
 	}
 

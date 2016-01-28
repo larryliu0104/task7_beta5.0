@@ -13,7 +13,7 @@
 	<dd>City:&nbsp;${customer.getCity()}&nbsp;State:&nbsp;${customer.getState()}&nbsp;</dd>
 	<dd>Zip:&nbsp;${customer.getZip()}</dd>
 	<dt>Cash Balance</dt>
-	<dd>${currentAmount}</dd>
+	<dd>$ ${currentAmount}</dd>
 	<dt>Available Balance</dt>
-	<dd>${validAmount}</dd>
+	<dd>$ ${validAmount}</dd>
 </dl>

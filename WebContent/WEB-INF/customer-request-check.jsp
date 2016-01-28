@@ -9,11 +9,12 @@
 	<div class="panel-body">
 		<div class="col-sm-10">
 			<p>
-				Your Valid Balance:  ${validAmount}
+				Your Current Balance: $ ${currentAmount}
 			</p>
 			<p>
-				Your Current Balance:  ${currentAmount}
+				Your Valid Balance: $ ${validAmount}
 			</p>
+
 			<br>
 			<form role="form">
 			<div class="form-group">

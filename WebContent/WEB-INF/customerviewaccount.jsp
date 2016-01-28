@@ -47,7 +47,7 @@
 										href="customer_research_fund.do?fundName=${share.getFundName()}">${share.getFundName() }</a></td>
 									<td>${share.getFundSymbol() }</td>
 									<td align="right">${share.getSharesThreeDecimal()}</td>
-									<td align="right">${share.getAmountTwoDecimal()}</td>
+									<td align="right">$ ${share.getAmountTwoDecimal()}</td>
 									<!--  <td align="right">${share.getAmountTwoDecimal()}</td>  -->
 									<td>
 									<div class="dropdown">

@@ -79,7 +79,7 @@
 							<c:forEach var="share" items="${shareList}">
 								<tr>
 									<td><a
-										href="customer_research_fund.do?fundName=${share.getFundName()}">${share.getFundName() }</a></td>
+										href="employee_research_fund.do?fundName=${share.getFundName()}">${share.getFundName() }</a></td>
 									<td>${share.getFundSymbol() }</td>
 									<td align="right">${share.getSharesThreeDecimal()}</td>
 									<td align="right">${share.getAmountTwoDecimal()}</td>
