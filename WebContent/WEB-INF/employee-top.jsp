@@ -201,7 +201,7 @@ h1, h2, h3, h4 {
                             aria-label="..." style="margin-top: 20px">
                             <button type="button" class="btn btn-default"
                                 style="width: 237px">
-                                <a href="employee_create_fund.do">Create New Fund </a>
+                                <a href="employee_create_fund.do">Manage Fund </a>
                             </button>
                             <button type="button" class="btn btn-default"
                                 style="width: 237px">

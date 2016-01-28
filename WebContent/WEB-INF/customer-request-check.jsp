@@ -21,7 +21,7 @@
 					class="col-sm-2 control-label"> Amount($): 
 					</label>					
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="amount">
+					<input type="text" pattern="\d+(\.\d{1,2})?" class="form-control" name="amount">
 				</div>
 			</div>
 			<br></br>

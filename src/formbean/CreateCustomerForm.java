@@ -47,6 +47,24 @@ public class CreateCustomerForm extends FormBean {
 			errors.add("Invalid button. Your action name: " + action
 			    + " Expected action name: Create Customer Account");
 		}
+		if (userName.length() > 15) {
+			errors.add("User name cannot be longer than 15 characters");
+		}
+		if (firstName.length() > 15) {
+			errors.add("First name cannot be longer than 15 characters");
+		}
+		if (lastName.length() > 15) {
+			errors.add("Last name cannot be longer than 15 characters");
+		}
+		if (addressLine1.length() > 20) {
+			errors.add("Address line 1 cannot be longer than 15 characters");
+		}
+		if (addressLine2.length() > 20) {
+			errors.add("Address line 2 cannot be longer than 15 characters");
+		}
+		if (city.length() > 15) {
+			errors.add("City cannot be longer than 15 characters");
+		}
 		return errors;
 
 	}

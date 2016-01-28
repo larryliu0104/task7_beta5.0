@@ -59,5 +59,32 @@
 		</form>
 
 	</div>
+	<div class="panel-body">
+            <c:choose>
+                <c:when test="${funds ==null}">
+                    <h5>Don't have any funds currently.</h5>
+                </c:when>
+                <c:otherwise>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fund name(You could click to see price history)</th>
+                                <th>Ticker</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="fund" items="${funds}">
+                                <tr>
+                                    <td><a
+                                        href="employee_research_fund.do?fundName=${fund.getName()}">${fund.getName() }</a></td>
+                                    <td>${fund.getTicker() }</td>
+                                </tr>
+                                
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:otherwise>
+            </c:choose>
+        </div>
 </div>
 

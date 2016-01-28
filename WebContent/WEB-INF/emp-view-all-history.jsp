@@ -22,6 +22,7 @@
 							<th style="text-align: right">Amount</th>
 							<th></th>
 							<th>Type</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,6 +36,7 @@
 								<td align="right">${transaction.getAmount()}</td>
 								<td></td>
 								<td>${transaction.getTransactionType()}</td>
+								<td>${transaction.getStatus()}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

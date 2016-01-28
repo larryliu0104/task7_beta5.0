@@ -45,6 +45,7 @@ public class CreateFundAction extends Action {
 		request.setAttribute("errors", errors);
 		request.getSession().setAttribute("customer", null);
 		try {
+			request.getSession().setAttribute("funds", fundDAO.getFunds());
 			CreateFundForm form = formBeanFactory.create(request);
 			request.setAttribute("form", form);
 

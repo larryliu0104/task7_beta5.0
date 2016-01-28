@@ -19,6 +19,16 @@ public class CreateEmployeeForm extends FormBean {
 		List<String> errors = new ArrayList<String>();
 		checkMissingInput(errors);
 
+		if (userName.length() > 15) {
+			errors.add("User name cannot be longer than 15 characters");
+		}
+		if (firstName.length() > 15) {
+			errors.add("First name cannot be longer than 15 characters");
+		}
+		if (lastName.length() > 15) {
+			errors.add("Last name cannot be longer than 15 characters");
+		}
+		
 		if (!password.equals(confirm)) {
 			errors.add("Your confirmed password is different.");
 		}

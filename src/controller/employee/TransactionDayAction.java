@@ -71,7 +71,7 @@ public class TransactionDayAction extends Action {
 			String lastDate = model.getLastTransactionDay();
 			if (Util.compareDateStrings(lastDate, newDate) > 0) {
 				errors
-				    .add("Your input put date should be later than last transaction day "
+				    .add("Your input put date should be later than last transition day "
 				        + lastDate);
 				request.setAttribute("lastTransactionDay", lastDate);
 				request.setAttribute("minDate", increment(lastDate));
@@ -98,7 +98,7 @@ public class TransactionDayAction extends Action {
 			}
 
 			model.processTransaction(map, newDate);
-			request.setAttribute("message", "Transaction day updated");
+			request.setAttribute("message", "Transition day updated");
 			lastDate = model.getLastTransactionDay();
 			request.setAttribute("lastTransactionDay", lastDate);
 			request.setAttribute("minDate", increment(lastDate));
@@ -126,73 +126,4 @@ public class TransactionDayAction extends Action {
 		String res = sdf.format(c.getTime());
 		return res;
 	}
-
-	// private void setNewPrice(TransactionDayForm form, FundPriceDAO priceDAO,
-	// Map<String, String> map) throws RollbackException {
-	// String date = form.getDate();
-	// FundBean[] funds = fundDAO.getFunds();
-	// for (FundBean fund : funds) {
-	// FundPriceBean price = new FundPriceBean();
-	// price.setFundId(fund.getId());
-	// Log.i(TAG, "fund id " + fund.getId());
-	// System.out.println(map);
-	// Log.i(
-	// TAG,
-	// "new price double type "
-	// + Double.parseDouble(map.get(Integer.toString(fund.getId()))));
-	// price.setPrice((long) (100 * Double.parseDouble(map.get(Integer
-	// .toString(fund.getId())))));
-	// price.setPriceDate(date);
-	// priceDAO.create(price);
-	// }
-	//
-	// }
-
-	// private void setFunds(HttpServletRequest request, FundBean[] funds)
-	// throws RollbackException {
-	// DetailedFundBean[] detailedFundBeans = new DetailedFundBean[funds.length];
-	// String lastTransactionDay = (String) request
-	// .getAttribute("lastTransactionDay");
-	// for (int i = 0; i < funds.length; i++) {
-	// detailedFundBeans[i] = new DetailedFundBean();
-	// detailedFundBeans[i].setFundId(funds[i].getId());
-	// detailedFundBeans[i].setFundName(funds[i].getName());
-	// detailedFundBeans[i].setTicker(funds[i].getTicker());
-	// FundPriceBean price = fundPriceDAO.getCurrentFundPrice(funds[i].getId());
-	//
-	// detailedFundBeans[i].setPrice(price == null ? "-" : price
-	// .getPriceTwoDecimal());
-	// detailedFundBeans[i].setDate(price == null ? "-" : price.getPriceDate());
-	//
-	// Log.i(TAG, "getDate() " + detailedFundBeans[i].getDate());
-	// Log.i(TAG, "lastTransactionDay " + lastTransactionDay);
-	// if (detailedFundBeans[i].getDate() != null
-	// && !detailedFundBeans[i].getDate().equals("-")
-	// && Util.compareDateStrings(lastTransactionDay,
-	// detailedFundBeans[i].getDate()) < 0) {
-	// lastTransactionDay = detailedFundBeans[i].getDate();
-	// }
-	//
-	// }
-	// TransactionBean[] transactionBeans = transactionDAO.getTransactions();
-	// for (int i = 0; i < transactionBeans.length; i++) {
-	// if (transactionBeans[i].getExecuteDate() != null
-	// && Util.compareDateStrings(lastTransactionDay,
-	// transactionBeans[i].getExecuteDate()) < 0) {
-	// lastTransactionDay = transactionBeans[i].getExecuteDate();
-	// }
-	// }
-	//
-	// request.setAttribute("funds", detailedFundBeans);
-	// if (lastTransactionDay == null || lastTransactionDay.length() == 0) {
-	// request.setAttribute("lastTransactionDay", "2016-01-01");
-	//
-	// request.setAttribute("minDate", "2016-01-02");
-	// } else {
-	// request.setAttribute("lastTransactionDay", lastTransactionDay);
-	// request.setAttribute("minDate", increment(lastTransactionDay));
-	//
-	// }
-	// }
-
 }

@@ -9,12 +9,7 @@
 				out.println("Your total shares: <b>" + currentShare + "</b>");
 %>
 			</p>
-			<p>
-<% 
-				String pendingShare = request.getAttribute("pendingShare").toString();
-				out.println("Your pending shares: <b>" + pendingShare + "</b>");
-%>
-			</p>
+
 
 			<p>
 <% 
@@ -44,7 +39,7 @@
 						Share: 
 					</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" name="share">
+						<input type="text" pattern="\d+(\.\d{1,3})?" class="form-control" name="share">
 					</div>
 				</div>
 			<br>

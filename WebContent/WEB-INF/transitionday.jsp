@@ -42,10 +42,11 @@
 
 
 						<td align="right">${fund.getPrice()}</td>
+						
 						<td><input type="hidden" name="ids"
 							value="${fund.getFundId()}" /> <input type="text"
-							name="prices" value="1.00" placeholder="1.00"
-							pattern="\d+(\.\d{1,2})?" class="form-control" /></td>
+							name="prices"  placeholder="1.00"
+							pattern="\d+(\.\d{1,2})?" class="form-control" value="1.00"/></td>
 					</tr>
 				</c:forEach>
 			</tbody>

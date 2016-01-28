@@ -20,6 +20,7 @@ import databean.DetailedTransactionBean;
 import databean.FundBean;
 import databean.FundPriceBean;
 import databean.PositionBean;
+import databean.ShareInformationBean;
 import databean.TransactionBean;
 
 public class Model {
@@ -568,5 +569,27 @@ public class Model {
 			}
 			return detailedTransactionBeans;
 		}
+
+	public ShareInformationBean[] getShares(int customerId)
+	    throws RollbackException {
+
+		PositionBean[] positionList = positionDAO
+		    .getPositionsByCustomerId(customerId);
+		ShareInformationBean[] shares = new ShareInformationBean[positionList.length];
+		for (int i = 0; i < positionList.length; i++) {
+			FundBean fund = fundDAO.read(positionList[i].getId());
+			shares[i] = new ShareInformationBean();
+			shares[i].setFundId(fund.getId());
+			shares[i].setFundName(fund.getName());
+			shares[i].setFundSymbol(fund.getTicker());
+			shares[i].setShare(positionList[i].getShares());
+			FundPriceBean price = fundPriceDAO.getCurrentFundPrice(fund.getId());
+			if (price != null) {
+				shares[i]
+				    .setShareAmount(price.getPrice() * positionList[i].getShares());
+			}
+		}
+		return shares;
+	}
 
 }
