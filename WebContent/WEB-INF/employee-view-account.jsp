@@ -18,8 +18,6 @@
 				<a
 				href="employee-deposit-check.do?userName=${customer.getUserName()}">deposit
 				check</a>
-			<jsp:include page="customer-profile.jsp" />
-			<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 			<c:choose>
 				<c:when test="${shareList ==null}">
 					<h5>No funds currently.</h5>

@@ -63,32 +63,32 @@
 									<td>${customer.getFirstName() }</td>
 									<td>${customer.getLastName() }</td>
 									<td>
-									<!-- 	<div class="dropdown">
-											<button class="btn btn-primary dropdown-toggle" type="button"
-												id="dropdownMenu1" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="true">
-												Manage Account <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
-												style="font-size: 16px">
-												<li><a
-                                                    href="employee_view_customer_profile.do?userName=${customer.getUserName()}">View Profile
-                                                        </a></li>
+<!-- 									 	<div class="dropdown"> -->
+<!-- 											<button class="btn btn-primary dropdown-toggle" type="button" -->
+<!-- 												id="dropdownMenu1" data-toggle="dropdown" -->
+<!-- 												aria-haspopup="true" aria-expanded="true"> -->
+<!-- 												Manage Account <span class="caret"></span> -->
+<!-- 											</button> -->
+<!-- 											<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" -->
+<!-- 												style="font-size: 16px"> -->
+<!-- 												<li><a -->
+<%--                                                     href="employee_view_customer_profile.do?userName=${customer.getUserName()}">View Profile --%>
+<!--                                                         </a></li> -->
                                                         
-												<li><a
-													href="employee-change-customer-pwd.do?userName=${customer.getUserName()}">Change
-														Password</a></li>
-												<li role="separator" class="divider"></li>
-												<li><a
-													href="employee-view-transactions.do?userName=${customer.getUserName()}">Transaction
-														History</a></li>
+<!-- 												<li><a -->
+<%-- 													href="employee-change-customer-pwd.do?userName=${customer.getUserName()}">Change --%>
+<!-- 														Password</a></li> -->
+<!-- 												<li role="separator" class="divider"></li> -->
+<!-- 												<li><a -->
+<%-- 													href="employee-view-transactions.do?userName=${customer.getUserName()}">Transaction --%>
+<!-- 														History</a></li> -->
 
 
-												<li><a
-													href="employee-deposit-check.do?userName=${customer.getUserName()}">Deposit
-														Check</a></li>
-											</ul>
-										</div>  -->
+<!-- 												<li><a -->
+<%-- 													href="employee-deposit-check.do?userName=${customer.getUserName()}">Deposit --%>
+<!-- 														Check</a></li> -->
+<!-- 											</ul> -->
+<!-- 										</div>   -->
 										<button class="btn btn-default" type="button">
 											<a
                                                     href="employee_view_customer_profile.do?userName=${customer.getUserName()}">View Profile

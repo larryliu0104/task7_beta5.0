@@ -10,8 +10,9 @@
 <div class="panel-body">
 	<div class="col-sm-6" style="margin-left: 180px">
 		<h3>
-			Change Password for <a id="${customer.getUserName() }-ID"
-				data-toggle="modal" data-target="#${customer.getUserName() }">${customer.getUserName()}</a>
+			Change Password for  <a
+                                                    href="employee_view_customer_profile.do?userName=${customer.getUserName()}">${customer.getUserName()}
+                                                        </a>
 
 		</h3>
 		<br></br>

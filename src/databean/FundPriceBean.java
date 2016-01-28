@@ -33,7 +33,7 @@ public class FundPriceBean {
 	}
 
 	public String getPriceTwoDecimal() {
-		DecimalFormat df = new DecimalFormat("0.00");
+		DecimalFormat df = new DecimalFormat("#,##0.00");
 		return df.format(getPrice() * 1.0 / 100);
 	}
 

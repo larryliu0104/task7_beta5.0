@@ -62,7 +62,7 @@ public class TransactionBean {
 	}
 
 	public String getSharesThreeDecimal() {
-		DecimalFormat df = new DecimalFormat("0.000");
+		DecimalFormat df = new DecimalFormat("#,##0.000");
 		return df.format(getShares() * 1.0 / 1000);
 
 	}
@@ -76,12 +76,12 @@ public class TransactionBean {
 	}
 
 	public String getAmountTwoDecimal() {
-		DecimalFormat df = new DecimalFormat("0.00");
+		DecimalFormat df = new DecimalFormat("#,##0.00");
 		return df.format(getAmount() * 1.0 / 100);
 	}
 
 	public String getPriceTwoDecimal() {
-		DecimalFormat df = new DecimalFormat("0.00");
+		DecimalFormat df = new DecimalFormat("#,##0.00");
 		return df.format(getPrice() * 1.0 / 100);
 	}
 

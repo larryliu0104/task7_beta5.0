@@ -1,4 +1,6 @@
 <jsp:include page="employee-top.jsp" />
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+
 <div class="panel-heading">
 	<h3 class="panel-title">Customer Profile 
 	</h3>
@@ -14,12 +16,13 @@
 		History</a></button>
 		<button  class="btn btn-default" type="button"><a
 			href="employee-deposit-check.do?userName=${customer.getUserName()}">Deposit
-			Check</button>
+			Check</a></button>
 		</li>
+		<h4>${customer.getUserName()} Personal Information </h4>
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th width="50%">${customer.getUserName()} Information </th>
+					<th width="50%"></th>
 					<th>    </th>
 			</thead>
 			<tbody>
@@ -32,7 +35,7 @@
 					<td>${customer.getFirstName()} </td>
 				</tr>
 				<tr>
-					<td>First Name</td>
+					<td>Last Name</td>
 					<td>${customer.getLastName()}</td>
 				</tr>
 				<tr>
@@ -54,5 +57,41 @@
 				</tr>
 			</tbody>
 		</table>
+		<br>
+		<h4>${customer.getUserName()} Fund Information</h4>
+			<c:choose>
+				<c:when test="${shareList ==null}">
+					<h5>${customer.getUserName()}  don't have any funds currently.</h5>
+				</c:when>
+				<c:otherwise>
+					<h5>Last trading day: ${lastTransactionDay}</h5>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Fund name</th>
+								<th>Ticker</th>
+								<th style="text-align: right">Shares</th>
+								<th style="text-align: right">Position</th>
+								<!--<th style="text-align:right">Estimated value</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="share" items="${shareList}">
+								<tr>
+									<td><a
+										href="customer_research_fund.do?fundName=${share.getFundName()}">${share.getFundName() }</a></td>
+									<td>${share.getFundSymbol() }</td>
+									<td align="right">${share.getSharesThreeDecimal()}</td>
+									<td align="right">${share.getAmountTwoDecimal()}</td>
+
+								</tr>
+								
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:otherwise>
+			</c:choose>
 	</div>
 </div>
+
+		

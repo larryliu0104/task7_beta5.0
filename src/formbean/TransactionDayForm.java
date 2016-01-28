@@ -77,8 +77,8 @@ public class TransactionDayForm extends FormBean {
 			}
 
 			Log.i(TAG, "prices i " + prices[i]);
-			if (Double.parseDouble(prices[i]) < 0) {
-				errors.add("Price no." + i + " is less than 0");
+			if (Double.parseDouble(prices[i]) <= 0) {
+				errors.add("Price no." + i + " should be at least 0.01");
 				return;
 			}
 			if (Double.parseDouble(prices[i]) > 1000) {

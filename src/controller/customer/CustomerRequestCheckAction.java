@@ -65,7 +65,7 @@ public class CustomerRequestCheckAction extends Action {
 				return REQUES_CHECK_JSP;
 			}
 			model.commitRequestCheck(customer.getId(),
-			    ((long)Double.parseDouble(form.getAmount()) * 100));
+			    ((long)(Double.parseDouble(form.getAmount()) * 100)));
 			request
 			    .setAttribute("message",
 			        "Thanks, we have accepted your request. Please wait until the Transition Day");

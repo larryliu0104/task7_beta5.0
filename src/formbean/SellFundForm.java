@@ -24,6 +24,14 @@ public class SellFundForm extends FormBean {
 		if (!Util.matchThreeDecimalInput(shares)) {
 			errorList.add("Deposit check amount should have at most three decimal places");
 		}
+		if (Double.parseDouble(shares) > 1000000) {
+			errorList.add("Shares sold should be no more than 1000000");
+
+		}
+		if (Double.parseDouble(shares) < 1) {
+			errorList.add("Shares sold should not be less than 1");
+
+		}
 		if (errorList.size() > 0) {
 			return errorList;
 		}

@@ -325,6 +325,8 @@ public class Model {
 		return lastTransactionDay;
 
 	}
+	
+
 
 	public void commitDepositCheckTransaction(String userName, String amount)
 	    throws RollbackException {
@@ -572,13 +574,19 @@ public class Model {
 
 	public ShareInformationBean[] getShares(int customerId)
 	    throws RollbackException {
+		Log.e("577Customer id", " "+customerId);
 
 		PositionBean[] positionList = positionDAO
 		    .getPositionsByCustomerId(customerId);
+		Log.e("Model 581", "positionList.length" + positionList.length);
 		ShareInformationBean[] shares = new ShareInformationBean[positionList.length];
 		for (int i = 0; i < positionList.length; i++) {
-			FundBean fund = fundDAO.read(positionList[i].getId());
+			
+			FundBean fund = fundDAO.read(positionList[i].getFundId());
+			Log.e("fund is null?", " " + (fund == null));
 			shares[i] = new ShareInformationBean();
+			Log.e("584 fund id: ", " " + fund.getId() + "fund name: " + fund.getName() + 
+					"fund ticker: " + fund.getTicker());
 			shares[i].setFundId(fund.getId());
 			shares[i].setFundName(fund.getName());
 			shares[i].setFundSymbol(fund.getTicker());
@@ -586,7 +594,7 @@ public class Model {
 			FundPriceBean price = fundPriceDAO.getCurrentFundPrice(fund.getId());
 			if (price != null) {
 				shares[i]
-				    .setShareAmount(price.getPrice() * positionList[i].getShares());
+				    .setShareAmount(price.getPrice() * positionList[i].getShares() / 1000);
 			}
 		}
 		return shares;

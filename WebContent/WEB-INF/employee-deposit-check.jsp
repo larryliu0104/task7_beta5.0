@@ -8,8 +8,9 @@
 <div class="panel-body">
 	<div class="col-md-8 column">
 		<h3>
-			Deposit check for <a id="${customer.getUserName() }-ID"
-                data-toggle="modal" data-target="#${customer.getUserName() }">${customer.getUserName()}</a>
+			Deposit check for  <a
+                                                    href="employee_view_customer_profile.do?userName=${customer.getUserName()}">${customer.getUserName()}
+                                                        </a>
 		</h3>
 		<br>
 

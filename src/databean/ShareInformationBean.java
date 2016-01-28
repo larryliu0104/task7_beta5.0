@@ -2,6 +2,8 @@ package databean;
 
 import java.text.DecimalFormat;
 
+import util.Util;
+
 /*
  * This class is non-persistent 
  * object that aggregates  tables(Fund,Price).
@@ -15,13 +17,12 @@ public class ShareInformationBean {
 	private String shareAmount; // in money equvalent
 
 	public String getSharesThreeDecimal() {
-		DecimalFormat df = new DecimalFormat("0.000");
-		return df.format(Long.parseLong(getShare()) * 1.0 / 1000);
-
+		return Util.formatNumber(Long.parseLong(getShare()) * 1.0 / 1000, Util.FORMAT_STRING_THREE);
 	}
 
 	public String getAmountTwoDecimal() {
-		DecimalFormat df = new DecimalFormat("0.00");
+		//return Util.formatNumber(Long.parseLong(getShareAmount()) * 1.0 / 100, Util.FORMAT_STRING_TWO);
+		DecimalFormat df = new DecimalFormat("#,##0.00");
 		return df.format(Double.parseDouble(getShareAmount()) * 1.0 / 100);
 	}
 

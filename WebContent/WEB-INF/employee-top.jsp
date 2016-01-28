@@ -207,10 +207,10 @@ h1, h2, h3, h4 {
                                 style="width: 237px">
                                 <a href="employee-transition-day.do">Transition Day </a>
                             </button>
-                            <button type="button" class="btn btn-default"
+                            <!-- <button type="button" class="btn btn-default"
                                 style="width: 237px">
                                 <a href="employee-view-all-transactions.do">View Transaction History </a>
-                            </button>                            
+                            </button>    -->                         
                         </div>
 
                         <!-- <ul class="nav nav-pills nav-stacked" style="font-size: 16px">

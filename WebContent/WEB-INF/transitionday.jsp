@@ -20,7 +20,7 @@
 				min="${minDate}" max="2050-01-01"></div>
 		</div>
 
-		<table class="table table-striped table-hover" id="transaction1" style="display: block;  max-height: 600px; overflow-y: auto">
+		<table class="table table-striped table-hover" id="transaction1" style="display: block;  height: 500px; overflow-y: scroll">
 			<thead>
 				<tr>
 					<th width="15%">Date</th>
@@ -38,7 +38,7 @@
 					<tr>
 						<td>${fund.getDate()}</td>
 						<td>${fund.getTicker()}</td>
-						<td>${fund.getFundName()}</td>
+						<td><a href="employee_research_fund.do?fundName=${fund.getFundName()}">${fund.getFundName() }</a></td>
 
 
 						<td align="right">${fund.getPrice()}</td>

@@ -12,6 +12,8 @@ public class Util {
 	private static final String REQUEST_CHECK = "Request Check";
 	private static final String SELL_FUND = "Sell Fund";
 	private static final String BUY_FUND = "Buy Fund";
+	public static final String FORMAT_STRING_TWO = "#,##0.00";
+	public static final String FORMAT_STRING_THREE = "#,##0.000";
 
 	public static boolean matchTwoDecimalInput(String input) {
 		return input.matches("\\d+(\\.\\d{1,2})?");

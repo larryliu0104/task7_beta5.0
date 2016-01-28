@@ -6,21 +6,38 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import model.CustomerDAO;
+import model.FundDAO;
+import model.FundPriceDAO;
 import model.Model;
+import model.PositionDAO;
+import model.TransactionDAO;
 
 import org.genericdao.RollbackException;
 import org.genericdao.Transaction;
 
 import controller.main.Action;
 import databean.CustomerBean;
+import databean.FundBean;
+import databean.FundPriceBean;
+import databean.PositionBean;
+import databean.ShareInformationBean;
 
 public class EmployeeViewCustomerProfileAction extends Action {
 	private static final String ACTION_NAME = "employee_view_customer_profile.do";
 	private static final String VIEW_PROFILE_JSP_NAME = "employee_view_customer_profile.jsp";
+	private PositionDAO positionDAO;
+	
 	private CustomerDAO customerDAO;
+	private TransactionDAO transactionDAO;
+	private Model model;
+	
 
 	public EmployeeViewCustomerProfileAction(Model model) {
+		positionDAO = model.getPositionDAO();
+		
 		customerDAO = model.getCustomerDAO();
+		transactionDAO = model.getTransactionDAO();
+		this.model = model;
 
 	}
 
@@ -41,16 +58,25 @@ public class EmployeeViewCustomerProfileAction extends Action {
 				errors.add("Missing user name");
 				return "employee-result.jsp";
 			}
-			// if (!form.isPresent()) {
-			// return VIEW_PROFILE_JSP_NAME;
-			// }
+
 			CustomerBean customer = customerDAO.getCustomerByUserName(userName);
 			if (customer == null) {
 				errors.add("Didn't find customer with userName" + userName);
 				return "employee-result.jsp";
 			}
-			// Log.i(TAG, "found customer");
+
 			request.setAttribute("customer", customer);
+			PositionBean[] positionList = positionDAO
+				    .getPositionsByCustomerId(customer.getId());
+				if (positionList == null) {
+					return "customerviewaccount.jsp";
+				}
+				ShareInformationBean[] shareList = model.getShares(customer.getId());
+				String lastTransactionDay = null;
+				
+				lastTransactionDay = transactionDAO.getUsersLastTransactionDay(customer.getId());
+				request.setAttribute("lastTransactionDay", lastTransactionDay);
+				request.setAttribute("shareList", shareList);
 
 			return VIEW_PROFILE_JSP_NAME;
 		} catch (RollbackException e) {

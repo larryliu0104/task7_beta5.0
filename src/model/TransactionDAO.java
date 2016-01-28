@@ -116,5 +116,42 @@ public class TransactionDAO extends GenericDAO<TransactionBean> {
 	public TransactionBean[] getAllTransactions() throws RollbackException{
 		return match();
 	}
+	public String getUsersLastTransactionDay(int customerId) throws RollbackException {
+		String lastTransactionDay = null;
+		TransactionBean[] transactions = getTransactions();
+		if (transactions != null) {
+			for (int i = 0; i < transactions.length; i++) {
+				if (transactions[i].getExecuteDate() != null
+				    && !transactions[i].getExecuteDate().equals("-")
+				    && transactions[i].getCustomerId() == (customerId)) {
+					if (lastTransactionDay == null) {
+						lastTransactionDay = transactions[i].getExecuteDate();
+					} else if (Util.compareDateStrings(lastTransactionDay,
+					    transactions[i].getExecuteDate()) < 0) {
+						lastTransactionDay = transactions[i].getExecuteDate();
+					}
+				}
+			}
+		}
+//		FundPriceBean[] fundPriceBeans = fundPriceDAO.getAllPrices();
+//		if (fundPriceBeans != null) {
+//			for (int i = 0; i < fundPriceBeans.length; i++) {
+//				if (fundPriceBeans[i].getPriceDate() != null
+//				    && !fundPriceBeans[i].getPriceDate().equals("-")) {
+//					if (lastTransactionDay == null) {
+//						lastTransactionDay = fundPriceBeans[i].getPriceDate();
+//					} else if (Util.compareDateStrings(lastTransactionDay,
+//					    fundPriceBeans[i].getPriceDate()) < 0) {
+//						lastTransactionDay = fundPriceBeans[i].getPriceDate();
+//					}
+//				}
+//			}
+//		}
+		if (lastTransactionDay == null) {
+			lastTransactionDay = "-";
+		}
+		return lastTransactionDay;
+
+	}
 
 }

@@ -30,7 +30,7 @@
 						Fund Name: 
 					</label>
 					<div class="col-sm-10">
-						<a href="customer_fund_detail.do?fundId=${fund.getId()}">${fund.getName() }</a>
+						<a href="customer_research_fund.do?fundName=${fund.getName()}">${fund.getName() }</a>
 					</div>
 				</div>
 				<div class="form-group">

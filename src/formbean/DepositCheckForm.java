@@ -21,6 +21,10 @@ public class DepositCheckForm extends FormBean {
 			errors.add("Deposit should be less than 1000000");
 
 		}
+		if (Double.parseDouble(amount) <= 0) {
+			errors.add("Deposit should be at least 0.01");
+
+		}
 		if (errors.size() > 0) {
 			return errors;
 		}

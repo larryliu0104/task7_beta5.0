@@ -30,9 +30,11 @@ public class CustomerViewAccountAction extends Action {
 	private CustomerDAO customerDAO;
 	private TransactionDAO transactionDAO;
 	private FundPriceDAO priceDAO;
-	private static final String FORMAT_STRING = "###,###,###,###,###,##0.00";
+	private static final String FORMAT_STRING = "#,##0.00";
+	private Model model;
 
 	public CustomerViewAccountAction(Model model) {
+		this.model = model;
 		positionDAO = model.getPositionDAO();
 		fundDAO = model.getFundDAO();
 		customerDAO = model.getCustomerDAO();
@@ -71,26 +73,11 @@ public class CustomerViewAccountAction extends Action {
 			if (positionList == null) {
 				return "customerviewaccount.jsp";
 			}
-			ShareInformationBean[] shareList = new ShareInformationBean[positionList.length];
+			ShareInformationBean[] shareList = model.getShares(customer.getId());
 			String lastTransactionDay = null;
-			for (int i = 0; i < positionList.length; i++) {
-				FundBean fund = fundDAO.read(positionList[i].getFundId());
-				shareList[i] = new ShareInformationBean();
-				shareList[i].setFundId(fund.getId());
-				shareList[i].setFundName(fund.getName());
-				shareList[i].setFundSymbol(fund.getTicker());
-				shareList[i].setShare(positionList[i].getShares());
-				FundPriceBean price = priceDAO.getCurrentFundPrice(fund.getId());
-				if (price != null) {
-					shareList[i].setShareAmount(price.getPrice()
-					    * positionList[i].getShares());
-					if (lastTransactionDay == null) {
-						lastTransactionDay = price.getPriceDate();
-						request.setAttribute("lastTransactionDay", lastTransactionDay);
-					}
-				}
-
-			}
+			
+			lastTransactionDay = transactionDAO.getUsersLastTransactionDay(customer.getId());
+			request.setAttribute("lastTransactionDay", lastTransactionDay);
 			request.setAttribute("shareList", shareList);
 
 			return "customerviewaccount.jsp";

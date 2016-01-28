@@ -8,8 +8,9 @@
 
 
 	<h3>
-		Transaction history for <a id="${customer.getUserName() }-ID"
-                data-toggle="modal" data-target="#${customer.getUserName() }">${customer.getUserName()}</a>
+		Transaction history for <a
+                                                    href="employee_view_customer_profile.do?userName=${customer.getUserName()}">${customer.getUserName()}
+                                                        </a>
 	</h3>
 	<jsp:include page="template-result.jsp" />
 	<br></br>

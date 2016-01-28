@@ -73,6 +73,7 @@ public class DetailedTransactionBean {
 	}
 
 	public String getPrice() {
+		
 		return price;
 	}
 

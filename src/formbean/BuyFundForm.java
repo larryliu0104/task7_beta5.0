@@ -22,7 +22,15 @@ public class BuyFundForm extends FormBean {
 			errors.add("Invalid action");
 		}
 		if (!Util.matchTwoDecimalInput(amount)) {
-			errors.add("Deposit check amount should have at most two decimal places");
+			errors.add("Buy amount should have at most two decimal places");
+		}
+		if (Double.parseDouble(amount) > 1000000) {
+			errors.add("Buy amount be less or equal than 1000000");
+
+		}
+		if (Double.parseDouble(amount) < 1) {
+			errors.add("Buy amount should be more than 1");
+
 		}
 		if (errors.size() > 0) {
 			return errors;

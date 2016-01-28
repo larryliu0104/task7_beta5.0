@@ -36,7 +36,7 @@
 								<th>Fund name</th>
 								<th>Ticker</th>
 								<th style="text-align: right">Shares</th>
-								<!--<th style="text-align:right">Estimated value</th> -->
+								<th style="text-align:right">Position</th>
 								<th>Operation</th>
 							</tr>
 						</thead>
@@ -47,6 +47,7 @@
 										href="customer_research_fund.do?fundName=${share.getFundName()}">${share.getFundName() }</a></td>
 									<td>${share.getFundSymbol() }</td>
 									<td align="right">${share.getSharesThreeDecimal()}</td>
+									<td align="right">${share.getAmountTwoDecimal()}</td>
 									<!--  <td align="right">${share.getAmountTwoDecimal()}</td>  -->
 									<td>
 									<div class="dropdown">

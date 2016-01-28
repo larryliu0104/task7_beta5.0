@@ -41,7 +41,7 @@ public class PositionBean {
 	}
 
 	public String getSharesThreeDecimal() {
-		DecimalFormat df = new DecimalFormat("#.###");
+		DecimalFormat df = new DecimalFormat("#,##0.000");
 		return df.format(getShares());
 
 	}
