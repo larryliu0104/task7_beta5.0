@@ -20,7 +20,7 @@
 				min="${minDate}" max="2050-01-01"></div>
 		</div>
 
-		<table class="table table-striped table-hover" id="transaction">
+		<table class="table table-striped table-hover" id="transaction1" style="display: block;  max-height: 600px; overflow-y: auto">
 			<thead>
 				<tr>
 					<th width="15%">Date</th>
@@ -33,7 +33,7 @@
 					 (at most 2 decimal digits)</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody >
 				<c:forEach var="fund" items="${funds}">
 					<tr>
 						<td>${fund.getDate()}</td>

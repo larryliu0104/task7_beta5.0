@@ -128,14 +128,14 @@ h1, h2, h3, h4 {
                 "aTargets" : [ 3 ]
             } ]
         });
-        $('#transaction').DataTable({
-            "lengthMenu" : [ [ 5, 10, -1 ], [ 5, 10, "All" ] ],
-            /* "dom": '<"top"i>rt<"bottom"flp><"clear">', */
-            "dom" : '<"top"f>rt<"bottom"lip><"clear">',
-            "aoColumnDefs" : [ {
-                "bSortable" : false,
-                "aTargets" : [ 4 ]
-            } ]
+        $('#fundTable').DataTable({
+             "lengthMenu" : [ [-1, 5, 10 ], [ "All", 5, 10] ],
+//             /* "dom": '<"top"i>rt<"bottom"flp><"clear">', */
+//             "dom" : '<"top"f>rt<"bottom"lip><"clear">',
+//             "aoColumnDefs" : [ {
+//                 "bSortable" : false,
+//                 "aTargets" : [ 4 ]
+//             } ]
         });
         $('#all').DataTable({
             "lengthMenu" : [ [ 5, 10, -1 ], [ 5, 10, "All" ] ],

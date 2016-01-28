@@ -63,7 +63,7 @@
 									<td>${customer.getFirstName() }</td>
 									<td>${customer.getLastName() }</td>
 									<td>
-										<div class="dropdown">
+									<!-- 	<div class="dropdown">
 											<button class="btn btn-primary dropdown-toggle" type="button"
 												id="dropdownMenu1" data-toggle="dropdown"
 												aria-haspopup="true" aria-expanded="true">
@@ -88,7 +88,13 @@
 													href="employee-deposit-check.do?userName=${customer.getUserName()}">Deposit
 														Check</a></li>
 											</ul>
-										</div>
+										</div>  -->
+										<button class="btn btn-default" type="button">
+											<a
+                                                    href="employee_view_customer_profile.do?userName=${customer.getUserName()}">View Profile
+                                                        </a>
+											</button>
+										
 									</td>
 
 									<%-- <td><a id="${customer.getUserName() }-ID"

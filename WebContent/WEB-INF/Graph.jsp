@@ -12,11 +12,12 @@
 		<script src="js/Chart.js"></script>
 	</head>
 	<body>
-		<span style="font-size: 30px;">Price changes for the last 7 transitions</span>
+	<br>
+		<span style="font-size: 20px;margin-left:30px">Price changes for the last 7 transitions</span>
 		<br/>
-		<span style="font-size: 20px;">Fund Name: &nbsp; <span style="font-weight: bolder;">${fund.getName()}</span></span>
+		<span style="font-size: 16px;    margin-left: 30px;">Fund Name: &nbsp; <span style="font-weight: bolder;">${fund.getName()}</span></span>
 		<br/>
-		<span style="font-size: 20px;">Fund Ticker: &nbsp; <span style="font-weight: bolder;">${fund.getTicker()}</span></span>
+		<span style="font-size: 16px;    margin-left: 30px;">Fund Ticker: &nbsp; <span style="font-weight: bolder;">${fund.getTicker()}</span></span>
 		<div>
 		</div>
 		<div style="width:50%">

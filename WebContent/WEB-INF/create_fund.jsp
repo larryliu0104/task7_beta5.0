@@ -65,7 +65,7 @@
                     <h5>Don't have any funds currently.</h5>
                 </c:when>
                 <c:otherwise>
-                    <table class="table">
+                    <table class="table" id="fundTable">
                         <thead>
                             <tr>
                                 <th>Fund name(You could click to see price history)</th>
