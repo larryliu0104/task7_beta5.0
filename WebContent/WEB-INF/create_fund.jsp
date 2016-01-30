@@ -1,18 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
 <jsp:include page="employee-top.jsp" />
-
 <div class="panel-heading">
 	<h3 class="panel-title">Create Fund</h3>
 </div>
 <br>
 <div class="panel-body">
+<p>Input length should be no more than 15</p>
 	<div>
 		<c:if test="${errors !=null && fn:length(errors) > 0}">
 			<div class="alert alert-warning">
 				<h4>
-					Error In Input
+					Error In Input 
 				</h4>
 
 				<c:forEach var="error" items="${errors}">
@@ -39,14 +38,14 @@
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="col-sm-3 control-label">Fund Name</label>
 				<div class="col-sm-8">
-					<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,10}" class="form-control" id="inputEmail3" name="name"
+					<input type="text" pattern="(.){1,15}" class="form-control" id="inputEmail3" name="name"
 						placeholder="Please input fund name">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputPassword3" class="col-sm-3 control-label">Ticker</label>
+				<label for="inputPassword3" class="col-sm-3 control-label">Ticker(length no more than 5)</label>
 				<div class="col-sm-8">
-					<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,10}" name="ticker" class="form-control" id="inputPassword3"
+					<input type="text" pattern="(.){1,5}" name="ticker" class="form-control" id="inputPassword3"
 						placeholder="Please input Ticker">
 				</div>
 			</div>

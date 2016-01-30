@@ -2,14 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <jsp:include page="employee-top.jsp" />
-
 <div class="panel-heading">
     <h3 class="panel-title">Create Customer Account</h3>
 </div>
 <br>
-<div class="panel-body">
+<div class="panel-body test">
     <div>
         <c:if test="${errors !=null && fn:length(errors) > 0}">
+        <!--  use bootstrap default alert style-->
             <div class="alert alert-warning">
                 <h4>Sorry, you have invalid input.</h4>
 
@@ -19,46 +19,51 @@
             </div>
         </c:if>
     </div>
-
+<label>Input length for left column  should be no more than 15</label>
     <form role="form" style="font: #51626f">
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">User Name</label><input type="text"
-                   pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="userName" value=${form.userName} >
+                <label for="exampleInputEmail1">User Name</label>
+                <input type="text" pattern="(.){1,15}"
+                   pattern="(.){1,15}" class="form-control" name="userName" value=${form.userName} >
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">First Name</label><input type="text"
-                   pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="firstName" value=${form.firstName}>
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" pattern="(.){1,15}"
+                   pattern="(.){1,15}" class="form-control" name="firstName" value=${form.firstName}>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Last Name</label><input type="text"
-                   pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="lastName" value=${form.lastName}>
+                <label for="exampleInputEmail1">Last Name</label>
+                <input type="text" pattern="(.){1,15}"
+                   pattern="(.){1,15}" class="form-control" name="lastName" value=${form.lastName}>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label><input
-                    type="password" class="form-control" name="password"
+                <label for="exampleInputPassword1">Password</label>
+                <input
+                    type="password" class="form-control" pattern="(.){1,15}" name="password"
                     value=${form.password}>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Confirm Password</label><input
-                    type="password" class="form-control" name="confirm"
+                <label for="exampleInputPassword1">Confirm Password</label>
+                <input
+                    type="password" pattern="(.){1,15}" class="form-control" name="confirm"
                     value=${form.confirm}>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="exampleInputEmail1">Address Line 1</label><input
-                    pattern="([[a-zA-Z]\s{0,1}]*){1,25}" type="text" class="form-control" name="addressLine1"
+                <label for="exampleInputEmail1">Address Line 1</label><input pattern="(.){1,150}"
+                    pattern="(.){1,25}" type="text" class="form-control" name="addressLine1"
                     value=${form.addressLine1}>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Address Line 2</label><input
-                    pattern="([[a-zA-Z]\s{0,1}]*){1,25}" type="text" class="form-control" name="addressLine2"
+                <label for="exampleInputEmail1">Address Line 2</label><input 
+                    pattern="(.){1,25}" type="text" class="form-control" name="addressLine2"
                     value=${form.addressLine2}>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">City</label><input type="text"
-                    pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="city" value=${form.city}>
+                    pattern="(.){1,15}" class="form-control" name="city" value=${form.city}>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">State</label>
@@ -134,6 +139,4 @@
 
 </div>
 </div>
-
-<%-- <jsp:include page="bottom.jsp" /> --%>
 

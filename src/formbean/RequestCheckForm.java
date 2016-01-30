@@ -15,14 +15,35 @@ public class RequestCheckForm extends FormBean {
 
 	public List<String> getValidationErrors() {
 		List<String> errorList = new ArrayList<String>();
-
+		if (amount == null || amount.trim().length() == 0) {
+			errorList.add("Amount shouldn't be empty");
+			return errorList;
+		}
+		if (!Util.matchTwoDecimalInput(amount)) {
+			errorList.add("Invalid input");
+		}
+		if (errorList.size() > 0) {
+			return errorList;
+		}
 		getAmountErrors(errorList);
-
+		if (errorList.size() > 0) {
+			return errorList;
+		}
 		if (!isRequest()) {
 			errorList.add("Invalid action");
 		}
+		if (errorList.size() > 0) {
+			return errorList;
+		}
 		if (!Util.matchTwoDecimalInput(amount)) {
 			errorList.add("Deposit check amount should have at most two decimal places");
+		}
+		if (errorList.size() > 0) {
+			return errorList;
+		}
+		if (Util.hasInvalidSymbol(amount)) {
+			errorList.add("please don't input brackets, slash and \"&\".");
+			return errorList;
 		}
 		if (errorList.size() > 0) {
 			return errorList;
@@ -74,8 +95,7 @@ public class RequestCheckForm extends FormBean {
 			errors.add("amount is required");
 			return;
 		}
-		if (amount.indexOf(".") != -1
-				&& (amount.length() - 1 - amount.indexOf(".")) > 2) {
+		if (amount.indexOf(".") != -1 && (amount.length() - 1 - amount.indexOf(".")) > 2) {
 			errors.add("amount is tracked to 2 decimal places ");
 			return;
 		}
@@ -86,11 +106,8 @@ public class RequestCheckForm extends FormBean {
 			errors.add("No letters, commas or symbols. Please enter numbers only");
 			return;
 		}
-		if (amountValue < 0.01
-				|| amountValue > 100000000) {
-			errors.add("The amount range should lie between "
-					+ 0.01 + " and "
-					+ 100000000);
+		if (amountValue < 0.01 || amountValue > 1000000) {
+			errors.add("The amount range should lie between " + 0.01 + " and " + 1000000);
 			return;
 		}
 	}

@@ -15,9 +15,23 @@ public class BuyFundForm extends FormBean {
 
 	public List<String> getValidationErrors() {
 		List<String> errors = new ArrayList<String>();
+		if (amount == null || amount.trim().length() == 0) {
+			errors.add("Amount shouldn't be empty");
+			return errors;
+		}
 
+		if (!Util.matchTwoDecimalInput(amount)) {
+			errors.add("Invalid input");
+			return errors;
+		}
+		if (Util.hasInvalidSymbol(amount)) {
+			errors.add("please don't input brackets, slash and \"&\".");
+			return errors;
+		}
 		getAmountErrors(errors);
-
+		if (errors.size() > 0) {
+			return errors;
+		}
 		if (!isBuy()) {
 			errors.add("Invalid action");
 		}
@@ -25,11 +39,11 @@ public class BuyFundForm extends FormBean {
 			errors.add("Buy amount should have at most two decimal places");
 		}
 		if (Double.parseDouble(amount) > 1000000) {
-			errors.add("Buy amount be less or equal than 1000000");
+			errors.add("Buy amount should not be more than 1,000,000");
 
 		}
 		if (Double.parseDouble(amount) < 1) {
-			errors.add("Buy amount should be more than 1");
+			errors.add("Buy amount should not be less than 1");
 
 		}
 		if (errors.size() > 0) {
@@ -73,8 +87,7 @@ public class BuyFundForm extends FormBean {
 		try {
 			amountValue = Double.valueOf(amount);
 		} catch (Exception e) {
-			errors
-			    .add("Numbers and decimal place only. No commas, letters or symbols.");
+			errors.add("Numbers and decimal place only. No commas, letters or symbols.");
 			return;
 		}
 		if (amountValue <= 0) {

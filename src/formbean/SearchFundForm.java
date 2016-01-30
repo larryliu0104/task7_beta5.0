@@ -11,7 +11,7 @@ public class SearchFundForm extends FormBean {
 	public List<String> getValidationErrors() {
 		List<String> errors = new ArrayList<String>();
 
-		if (fund == null || fund.length() == 0) {
+		if (fund == null || fund.trim().length() == 0) {
 			errors.add("Fund name is required");
 		}
 

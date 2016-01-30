@@ -1,5 +1,7 @@
 package databean;
 
+import java.text.DecimalFormat;
+
 import model.Model;
 
 //TransactionBean Wrapper class
@@ -119,5 +121,32 @@ public class DetailedTransactionBean {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getSharesThreeDecimal(){
+		if(getShares().equals("-")){
+			return getShares();
+		}else{
+			double amount = Double.parseDouble(getShares());
+			DecimalFormat formatter = new DecimalFormat("#,##0.000");
+			return (formatter.format(amount));
+		}
+	}
+	public String getPriceTwoDecimal(){
+		if(getPrice().equals("-")){
+			return getPrice();
+		}else{
+			double amount = Double.parseDouble(getPrice());
+			DecimalFormat formatter = new DecimalFormat("#,##0.00");
+			return (formatter.format(amount));
+		}
+	}
+	public String getAmountTwoDecimal(){
+		if(getAmount().equals("-")){
+			return getAmount();
+		}else{
+			double amount = Double.parseDouble(getAmount());
+			DecimalFormat formatter = new DecimalFormat("#,##0.00");
+			return (formatter.format(amount));
+		}
 	}
 }

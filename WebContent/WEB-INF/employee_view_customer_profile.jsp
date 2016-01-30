@@ -1,6 +1,6 @@
 <jsp:include page="employee-top.jsp" />
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="panel-heading">
 	<h3 class="panel-title">Customer Profile 
 	</h3>
@@ -52,8 +52,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Cash Balance</td>
-					<td>${customer.getCashTwoDecimal()}</td>
+					<td>Cash Balance($)</td>
+					<td>
+					${customer.getFormatCash()}
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -71,7 +73,7 @@
 								<th>Fund name</th>
 								<th>Ticker</th>
 								<th style="text-align: right">Shares</th>
-								<th style="text-align: right">Position</th>
+								<th style="text-align: right">Position($)</th>
 								<!--<th style="text-align:right">Estimated value</th> -->
 							</tr>
 						</thead>
@@ -82,7 +84,7 @@
 										href="employee_research_fund.do?fundName=${share.getFundName()}">${share.getFundName() }</a></td>
 									<td>${share.getFundSymbol() }</td>
 									<td align="right">${share.getSharesThreeDecimal()}</td>
-									<td align="right">${share.getAmountTwoDecimal()}</td>
+									<td align="right">${share.getAmountFormat()}</td>
 
 								</tr>
 								

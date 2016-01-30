@@ -10,16 +10,15 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import model.Model;
-
 import org.genericdao.RollbackException;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
-import util.Util;
 import controller.main.Action;
 import databean.DetailedFundBean;
 import formbean.TransactionDayForm;
+import model.Model;
+import util.Util;
 
 public class TransactionDayAction extends Action {
 	private static final String TRANSACTION_DAY_JSP = "transitionday.jsp";
@@ -70,9 +69,7 @@ public class TransactionDayAction extends Action {
 			}
 			String lastDate = model.getLastTransactionDay();
 			if (Util.compareDateStrings(lastDate, newDate) > 0) {
-				errors
-				    .add("Your input put date should be later than last transition day "
-				        + lastDate);
+				errors.add("Your input put date should be later than last transition day " + lastDate);
 				request.setAttribute("lastTransactionDay", lastDate);
 				request.setAttribute("minDate", increment(lastDate));
 				request.setAttribute("funds", model.getDetailFunds());
@@ -106,7 +103,7 @@ public class TransactionDayAction extends Action {
 			return TRANSACTION_DAY_JSP;
 		} catch (RollbackException e) {
 			e.printStackTrace();
-			errors.add("Please go back to choose a valid date");
+			errors.add("Invalid date or new funds detected, please go back and refresh");
 		} catch (FormBeanException e) {
 			e.printStackTrace();
 			errors.add(e.toString());

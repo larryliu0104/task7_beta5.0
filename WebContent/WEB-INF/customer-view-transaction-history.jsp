@@ -16,36 +16,39 @@
 					<h5>No transactions.</h5>
 				</c:when>
 				<c:otherwise>
-					<table class="table table-striped">
+					<table class="table table-striped" style="display: block;  height: 500px; overflow-y: scroll">
 						<thead >
 							<tr >
-								<th >Date</th>
-								<th >Fund name</th>
-								<th style="text-align:right">Shares</th>
-								<th style="text-align:right">Price($)</th>
-								<th style="text-align:right">Amount($)</th>
-								<th></th>
+								<th width="15%">Date</th>
+								<th width="10%" >Fund name</th>
+								<th width="15%" style="text-align:right">Shares</th>
+								<th width="15%" style="text-align:right">Price($)</th>
+								<th width="25%"style="text-align:right">Amount($)</th>
 								<th >Operation</th>
+								<th >Status</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody >
 							<c:forEach var="transaction" items="${transactions}">
 								<tr>
 									<td >${transaction.getExecuteDay()}</td>
 									<td >${transaction.getFundName()}</td>
 									<td align="right">
 									
-									<fmt:formatNumber type="number" 
-            maxFractionDigits="3"  minFractionDigits="3" value="${transaction.getAmount()}" />
-            
+									${transaction.getSharesThreeDecimal()}
 									</td>
-									<td align="right">${transaction.getPrice()}</td>
+
 									<td align="right">
-									<fmt:formatNumber type="number" 
-            maxFractionDigits="3"  minFractionDigits="2" value="${transaction.getAmount()}" />
+
+									${transaction.getPriceTwoDecimal()}
 									</td>
-									<td></td>
+									<td align="right">
+									${transaction.getAmountTwoDecimal()}
+
+									</td>
+
 									<td >${transaction.getTransactionType()}</td>
+									<td >${transaction.getStatus()}</td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -30,7 +30,20 @@ public class CreateCustomerForm extends FormBean {
 
 	public List<String> getValidationErrors() {
 		List<String> errors = new ArrayList<String>();
+
 		checkMissingInput(errors);
+		if (errors.size() > 0) {
+			return errors;
+		}
+		checkInvalidSymbols(errors);
+		if (errors.size() > 0) {
+			return errors;
+		}
+		checkEmptyInput(errors);
+		if (errors.size() > 0) {
+			return errors;
+		}
+
 		if (!Util.matchZip(zip)) {
 			errors.add("zip should be 5 digit number");
 		}
@@ -44,28 +57,36 @@ public class CreateCustomerForm extends FormBean {
 			return errors;
 		}
 		if (!action.equals("create")) {
-			errors.add("Invalid button. Your action name: " + action
-			    + " Expected action name: Create Customer Account");
+			errors.add(
+					"Invalid button. Your action name: " + action + " Expected action name: Create Customer Account");
 		}
-		if (userName.length() > 15) {
-			errors.add("User name cannot be longer than 15 characters");
+
+		if (userName.trim().length() > 15) {
+			errors.add("User name cannot be longer than 15 (consist of not only space)");
 		}
-		if (firstName.length() > 15) {
-			errors.add("First name cannot be longer than 15 characters");
+		if (firstName.trim().length() > 15) {
+			errors.add("First name cannot be longer than 15 (consist of not only space)");
 		}
-		if (lastName.length() > 15) {
-			errors.add("Last name cannot be longer than 15 characters");
+		if (lastName.trim().length() > 15) {
+			errors.add("Last name cannot be longer than 15 (consist of not only space)");
 		}
-		if (addressLine1.length() > 20) {
-			errors.add("Address line 1 cannot be longer than 15 characters");
+		if (password.trim().length() > 15) {
+			errors.add("Pwd cannot be longer than 15 (consist of not only space)");
 		}
-		if (addressLine2.length() > 20) {
-			errors.add("Address line 2 cannot be longer than 15 characters");
-		}
-		if (city.length() > 15) {
-			errors.add("City cannot be longer than 15 characters");
+		if (addressLine1.trim().length() > 150) {
+			errors.add("Address line 1 cannot be longer than 150 (consist of not only space)");
 		}
 		return errors;
+
+	}
+
+	private void checkInvalidSymbols(List<String> errors) {
+		if (Util.hasInvalidSymbol(userName) || Util.hasInvalidSymbol(firstName) || Util.hasInvalidSymbol(lastName)
+				|| Util.hasInvalidSymbol(password) || Util.hasInvalidSymbol(confirm)
+				|| Util.hasInvalidSymbol(addressLine1) || Util.hasInvalidSymbol(city) || Util.hasInvalidSymbol(zip)
+				|| Util.hasInvalidSymbol(state)) {
+			errors.add("please don't input brackets, slash and \"&\".");
+		}
 
 	}
 
@@ -81,9 +102,29 @@ public class CreateCustomerForm extends FormBean {
 		checkEmptyInput(state, errors, "Please input your state.");
 	}
 
+	private void checkEmptyInput(List<String> errors) {
+		checkOverLength(userName, errors, "Please input your user name no more than 15 chars.", 15);
+		checkOverLength(city, errors, "Please input your city no more than 15 chars.", 15);
+		checkOverLength(state, errors, "Please input your state no more than 15 chars.", 15);
+		checkOverLength(firstName, errors, "Please input your first name no more than 15 chars.", 15);
+		checkOverLength(lastName, errors, "Please input your last name no more than 15 chars.", 15);
+		checkOverLength(password, errors, "Please input your password no more than 15 chars.", 15);
+		checkOverLength(confirm, errors, "Please confirm your password no more than 15 chars.", 15);
+		checkOverLength(addressLine1, errors, "Please input your address1 no more than 150 chars.", 150);
+		checkOverLength(addressLine2, errors, "Please input your address2 no more than 150 chars.", 150);
+
+	}
+
+	private void checkOverLength(String s, List<String> errors, String string, int max) {
+		if (s != null && s.length() > max) {
+			errors.add(string);
+		}
+
+	}
+
 	private void checkEmptyInput(String input, List<String> errors, String errMsg) {
 
-		if (input == null || input.length() == 0) {
+		if (input == null || input.trim().length() == 0) {
 			errors.add(errMsg);
 		}
 

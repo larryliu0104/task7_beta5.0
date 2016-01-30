@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,13 +16,30 @@ public class Util {
 	public static final String FORMAT_STRING_TWO = "#,##0.00";
 	public static final String FORMAT_STRING_THREE = "#,##0.000";
 
+	public static boolean hasInvalidSymbol(String input) {
+		ArrayList<String> invalid = new ArrayList<String>();
+		invalid.add("<");
+		invalid.add(">");
+		invalid.add("\"");
+		invalid.add("&");
+		if (input != null) {
+			for (int i = 0; i < invalid.size(); i++) {
+				if (input.contains(invalid.get(i))) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public static boolean matchTwoDecimalInput(String input) {
 		return input.matches("\\d+(\\.\\d{1,2})?");
 	}
+
 	public static boolean matchThreeDecimalInput(String input) {
 		return input.matches("\\d+(\\.\\d{1,3})?");
 	}
-	
+
 	public static int compareDateStrings(String oldDate, String newDate) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date start = null;
@@ -42,8 +60,7 @@ public class Util {
 	}
 
 	public static String sanitizeInputString(String input) {
-		return input.replace("<", "&lt;").replace(">", "&gt;")
-		    .replace("\"", "&quot;").replace("&", "&amp;");
+		return input.replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("&", "&amp;");
 	}
 
 	public static String getDepositCheck() {

@@ -1,3 +1,6 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 
 <jsp:include page="customer-top.jsp" />
 
@@ -9,10 +12,10 @@
 	<div class="panel-body">
 		<div class="col-sm-10">
 			<p>
-				Your Current Balance: $ ${currentAmount}
+				Your Current Balance: $${currentAmount} 
 			</p>
 			<p>
-				Your Valid Balance: $ ${validAmount}
+				Your Valid Balance:  $${validAmount}
 			</p>
 
 			<br>

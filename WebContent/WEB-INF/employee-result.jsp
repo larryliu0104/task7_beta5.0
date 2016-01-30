@@ -6,9 +6,5 @@
 			<h3 class="panel-title"></h3>
 		</div><br>
 		<div class="panel-body">
-			
-
 <jsp:include page="template-result.jsp" />
 </div>
-
-<jsp:include page="bottom.jsp" />

@@ -170,7 +170,3 @@
 <%-- href="employee_view_customer.do?username=${customer.getUserName()}"> --%>
 
 <!-- Button trigger modal -->
-
-
-
-<%-- <jsp:include page="bottom.jsp" /> --%>

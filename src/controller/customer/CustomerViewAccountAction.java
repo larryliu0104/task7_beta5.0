@@ -6,8 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import model.CustomerDAO;
-import model.FundDAO;
-import model.FundPriceDAO;
+
 import model.Model;
 import model.PositionDAO;
 import model.TransactionDAO;
@@ -19,27 +18,26 @@ import util.Log;
 import util.Util;
 import controller.main.Action;
 import databean.CustomerBean;
-import databean.FundBean;
-import databean.FundPriceBean;
+
 import databean.PositionBean;
 import databean.ShareInformationBean;
 
 public class CustomerViewAccountAction extends Action {
 	private PositionDAO positionDAO;
-	private FundDAO fundDAO;
+	
 	private CustomerDAO customerDAO;
 	private TransactionDAO transactionDAO;
-	private FundPriceDAO priceDAO;
+	
 	private static final String FORMAT_STRING = "#,##0.00";
 	private Model model;
 
 	public CustomerViewAccountAction(Model model) {
 		this.model = model;
 		positionDAO = model.getPositionDAO();
-		fundDAO = model.getFundDAO();
+		
 		customerDAO = model.getCustomerDAO();
 		transactionDAO = model.getTransactionDAO();
-		priceDAO = model.getFundPriceDAO();
+		
 	}
 
 	public String getName() {

@@ -50,10 +50,10 @@
    					</div>
   				</div>
 			</form>
-		<p style="color: grey">*Please enter a positive number. </p>
+		<p style="color: grey">*The range of sell amount is 1 - 1,000,000 shares. </p>
 		<p style="color: grey">The decimal places should be no more than 3.</p>
 			<br></br>
 		</div>
 <%--     </c:if> --%>
-<jsp:include page="bottom.jsp" />
+<%-- <jsp:include page="bottom.jsp" /> --%>
 

@@ -9,13 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Model;
-
 import org.genericdao.DAOException;
 import org.genericdao.RollbackException;
 import org.genericdao.Transaction;
 
-import util.Log;
 import controller.customer.ChangeCustomerPasswordAction;
 import controller.customer.CustomerBuyFundAction;
 import controller.customer.CustomerRequestCheckAction;
@@ -39,6 +36,8 @@ import controller.employee.ViewAllHistoryAction;
 import controller.employee.ViewCustomerTransactionHistoryAction;
 import databean.CustomerBean;
 import databean.EmployeeBean;
+import model.Model;
+import util.Log;
 
 public class Controller extends HttpServlet {
 	/**
@@ -100,13 +99,11 @@ public class Controller extends HttpServlet {
 
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String servletPath = request.getServletPath();
 		String action = getActionName(servletPath);
@@ -129,8 +126,7 @@ public class Controller extends HttpServlet {
 				Log.i("no employee is in session ", nextPage);
 				nextPage = "login.jsp";
 			} else {
-				Log.i("valid employee is in session " + employee.getUserName(),
-				    nextPage);
+				Log.i("valid employee is in session " + employee.getUserName(), nextPage);
 				nextPage = Action.perform(action, request);
 			}
 		} else {
@@ -142,11 +138,10 @@ public class Controller extends HttpServlet {
 
 	}
 
-	private void sendToNextPage(String nextPage, HttpServletRequest request,
-	    HttpServletResponse response) throws IOException, ServletException {
+	private void sendToNextPage(String nextPage, HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		if (nextPage == null) {
-			response.sendError(HttpServletResponse.SC_NOT_FOUND,
-			    request.getServletPath());
+			response.sendError(HttpServletResponse.SC_NOT_FOUND, request.getServletPath());
 			return;
 		}
 		if (nextPage.endsWith(".do")) {
@@ -167,8 +162,8 @@ public class Controller extends HttpServlet {
 		// RequestDispatcher d = request.getRequestDispatcher("WEB-INF/" +
 		// nextPage);
 		// d.forward(request, response);
-		throw new ServletException(Controller.class.getName()
-		    + ".sendToNextPage(\"" + nextPage + "\"): invalid extension.");
+		throw new ServletException(
+				Controller.class.getName() + ".sendToNextPage(\"" + nextPage + "\"): invalid extension.");
 
 	}
 
@@ -184,12 +179,6 @@ public class Controller extends HttpServlet {
 		admin.setLastName("Li");
 		admin.setPassword("hi");
 		model.getEmployeeDAO().create(admin);
-		CustomerBean custom = new CustomerBean();
-		custom.setUserName("larry");
-		custom.setFirstName("larry");
-		custom.setLastName("Liu");
-		custom.setPassword("233333");
-		model.getCustomerDAO().create(custom);
 	}
 
 }

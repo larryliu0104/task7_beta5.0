@@ -44,8 +44,7 @@
 									<div class="dropdown">
                                         <button
 											class="btn btn-default" type="button">
-                                           <a
-												href="customer-sell-fund.do?fundId=${share.getFundId()}">Sell
+                                           <a href="customer-sell-fund.do?fundId=${share.getFundId()}">Sell
                                             </a>
                                         </button>
                                       

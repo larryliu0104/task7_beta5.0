@@ -1,6 +1,7 @@
 
 
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="employee-top.jsp" />
 
 <div class="panel-heading">
@@ -41,7 +42,10 @@
 						<td><a href="employee_research_fund.do?fundName=${fund.getFundName()}">${fund.getFundName() }</a></td>
 
 
-						<td align="right">${fund.getPrice()}</td>
+						<td align="right">
+<%-- 						<fmt:formatNumber type="currency" value="${fund.getPrice()}" /> --%>
+						$${fund.getPrice()}
+						</td>
 						
 						<td><input type="hidden" name="ids"
 							value="${fund.getFundId()}" /> <input type="text"

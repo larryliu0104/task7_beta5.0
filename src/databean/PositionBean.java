@@ -6,7 +6,7 @@ import org.genericdao.PrimaryKey;
 
 @PrimaryKey("id")
 public class PositionBean {
-	
+
 	private int id;
 	private int customerId;
 	private int fundId;
@@ -41,7 +41,7 @@ public class PositionBean {
 	}
 
 	public String getSharesThreeDecimal() {
-		DecimalFormat df = new DecimalFormat("0.000");
+		DecimalFormat df = new DecimalFormat("#,##0.000");
 		return df.format(getShares());
 
 	}

@@ -8,6 +8,7 @@
 </div>
 <jsp:include page="template-result.jsp" /><br>
 <div class="panel-body">
+<p>Input length should be no more than 15</p>
 	<div class="col-sm-6" style="margin-left: 180px">
 		<h3>
 			Change Password for  <a
@@ -18,14 +19,15 @@
 		<br></br>
 		<form role="form">
 			<div class="form-group">
-				<input type="hidden" name="userName"
+				<input type="hidden" name="userName" pattern = "(.){1,15}"
 					value="${customer.getUserName()}"> <label
-					for="exampleInputEmail1"> New password </label> <input
+					for="exampleInputEmail1"> New password (no more than 15 characters)</label> <input
 					type="password" class="form-control" name="newPassword">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Confirm New Password</label> <input
-					type="password" class="form-control" name="confirmNewPassword">
+				<label for="exampleInputPassword1">Confirm New Password</label> 
+				<input
+					type="password" class="form-control" pattern = "(.){1,15}" name="confirmNewPassword">
 			</div>
 			<button type="submit" class="btn btn-primary">Save Changes</button>
 		</form>

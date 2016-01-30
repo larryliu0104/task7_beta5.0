@@ -11,16 +11,16 @@
 		<form role="form" class="form-horizontal">
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="col-sm-6 control-label">New
-					password</label>
+					password(less than 15 characters)</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control" name="newPassword">
+					<input type="password" pattern="(.){1,15}" class="form-control" name="newPassword">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1" class="col-sm-6 control-label">Confirm
+				<label for="exampleInputPassword1"  class="col-sm-6 control-label">Confirm
 					New Password</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control"
+					<input type="password" pattern= "(.){1,15}" class="form-control"
 						name="confirmNewPassword">
 				</div>
 			</div>

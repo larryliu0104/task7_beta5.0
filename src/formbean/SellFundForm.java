@@ -15,22 +15,47 @@ public class SellFundForm extends FormBean {
 
 	public List<String> getValidationErrors() {
 		List<String> errorList = new ArrayList<String>();
-
+		if (shares == null || shares.trim().length() == 0) {
+			errorList.add("Amount shouldn't be empty");
+			return errorList;
+		}
+		if (!Util.matchThreeDecimalInput(shares)) {
+			errorList.add("Invalid input");
+			return errorList;
+		}
 		getShareErrors(errorList);
-
+		if (errorList.size() > 0) {
+			return errorList;
+		}
 		if (!isSell()) {
 			errorList.add("Action is invalid");
+		}
+		if (errorList.size() > 0) {
+			return errorList;
 		}
 		if (!Util.matchThreeDecimalInput(shares)) {
 			errorList.add("Deposit check amount should have at most three decimal places");
 		}
+		if (errorList.size() > 0) {
+			return errorList;
+		}
 		if (Double.parseDouble(shares) > 1000000) {
-			errorList.add("Shares sold should be no more than 1000000");
+			errorList.add("Shares sold should not be more than 1000000");
 
+		}
+		if (errorList.size() > 0) {
+			return errorList;
 		}
 		if (Double.parseDouble(shares) < 1) {
 			errorList.add("Shares sold should not be less than 1");
 
+		}
+		if (errorList.size() > 0) {
+			return errorList;
+		}
+		if (Util.hasInvalidSymbol(shares)) {
+			errorList.add("please don't input brackets, slash and \"&\".");
+			return errorList;
 		}
 		if (errorList.size() > 0) {
 			return errorList;
@@ -82,8 +107,7 @@ public class SellFundForm extends FormBean {
 			errors.add("share is required");
 			return;
 		}
-		if (shares.indexOf(".") != -1
-		    && (shares.length() - 1 - shares.indexOf(".")) > 3) {
+		if (shares.indexOf(".") != -1 && (shares.length() - 1 - shares.indexOf(".")) > 3) {
 			errors.add("Shares are tracked upto 3 decimal places only");
 			return;
 		}
@@ -95,8 +119,7 @@ public class SellFundForm extends FormBean {
 			return;
 		}
 		if (shareValue < 0.001 || shareValue > 100000000) {
-			errors.add("The share range should lies between " + 0.001 + " and "
-			    + 100000000);
+			errors.add("The share range should lies between " + 0.001 + " and " + 100000000);
 			return;
 		}
 	}

@@ -39,7 +39,10 @@
 									<td>${share.getFundName() }</td>
 									<td>${share.getFundTicker() }</td>
 									<td align="right">${share.getShare()}</td>
-									<td align="right">${share.getAmount()}</td>
+									
+									<td align="right">
+									
+									${share.getAmount()}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -48,5 +51,5 @@
 			</c:choose>
 		</div>
 
-<jsp:include page="bottom.jsp" />
+<%-- <jsp:include page="bottom.jsp" /> --%>
 

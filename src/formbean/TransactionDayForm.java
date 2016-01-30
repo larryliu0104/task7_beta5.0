@@ -18,7 +18,13 @@ public class TransactionDayForm extends FormBean {
 		List<String> errors = new ArrayList<String>();
 
 		checkPricesErrors(errors);
+		if (errors.size() > 0) {
+			return errors;
+		}
 		checkDateErrors(errors);
+		if (errors.size() > 0) {
+			return errors;
+		}
 
 		if (errors.size() > 0) {
 			return errors;
@@ -28,8 +34,9 @@ public class TransactionDayForm extends FormBean {
 	}
 
 	private void checkDateErrors(List<String> errors) {
-		if (getDate() == null || getDate().length() == 0) {
+		if (getDate() == null || getDate().trim().length() == 0) {
 			errors.add("Please input valid transaction day.");
+			return;
 		}
 	}
 
@@ -66,24 +73,25 @@ public class TransactionDayForm extends FormBean {
 		}
 
 		for (int i = 0; i < prices.length; i++) {
-			if (prices[i] == null) {
+			if (prices[i] == null || prices[i].trim().length() == 0) {
 				errors.add("Pissing price no." + i);
 				return;
 			}
 			if (!Util.matchTwoDecimalInput(prices[i])) {
-				errors
-				    .add("Price should have at most two decimal places and positive.");
+				errors.add("Price should have at most two decimal places and positive.");
 				return;
 			}
-
+			if (Util.hasInvalidSymbol(prices[i])) {
+				errors.add("please don't input brackets, slash and \"&\".");
+				return;
+			}
 			Log.i(TAG, "prices i " + prices[i]);
 			if (Double.parseDouble(prices[i]) <= 0) {
 				errors.add("Price no." + i + " should be at least 0.01");
 				return;
 			}
 			if (Double.parseDouble(prices[i]) > 1000) {
-				errors.add("Price no." + i
-				    + " is more than 1000. Max price you could set is 1000");
+				errors.add("Price no." + i + " is more than 1000. Max price you could set is 1000");
 				return;
 			}
 		}

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.mybeans.form.FormBean;
 
-import com.google.gson.Gson;
+import util.Util;
 
 public class LoginForm extends FormBean {
 
@@ -39,13 +39,30 @@ public class LoginForm extends FormBean {
 		if (action == null)
 			errors.add("Action is required");
 
-		if (errors.size() > 0)
+		if (errors.size() > 0) {
 			return errors;
-
-		if (!isEmployee() && !isCustomer())
+		}
+		if (Util.hasInvalidSymbol(userName)) {
+			errors.add("please don't input brackets, slash and \"&\".");
+			return errors;
+		}
+		if (Util.hasInvalidSymbol(password)) {
+			errors.add("please don't input brackets, slash and \"&\".");
+			return errors;
+		}
+		if (userName.length() > 15 || password.length() > 15) {
+			errors.add("Input length should be less than 15");
+			return errors;
+		}
+		if (!isEmployee() && !isCustomer()) {
 			errors.add("Invalid login action");
-		if (userName.matches(".*[<>\"].*"))
+		}
+		if (errors.size() > 0) {
+			return errors;
+		}
+		if (userName.matches(".*[<>\"].*")) {
 			errors.add("User name may not contain angle brackets or quotes");
+		}
 
 		return errors;
 	}
@@ -56,7 +73,7 @@ public class LoginForm extends FormBean {
 	}
 
 	private void checkEmptyInput(String input, List<String> errors, String errMsg) {
-		if (input == null || input.length() == 0) {
+		if (input == null || input.trim().length() == 0) {
 			errors.add(errMsg);
 		}
 	}
@@ -77,8 +94,4 @@ public class LoginForm extends FormBean {
 		return CUSTOMER_ACTION.equals(action);
 	}
 
-	@Override
-	public String toString() {
-		return new Gson().toJson(this);
-	}
 }

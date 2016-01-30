@@ -21,21 +21,22 @@
 			</div>
 		</c:if>
 	</div>
+	<label>Input length should be no more than 15</label>
 	<div class="col-sm-8" style="margin-left:">
 		<form role="form" class="form-horizontal">
 			<div class="form-group">
 				<label for="exampleInputEmail1" class="col-sm-6 control-label">User
 					Name</label>
 				<div class="col-sm-6">
-					<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="userName"
+					<input type="text" pattern="(.){1,15}" class="form-control" name="userName"
 						value=${form.userName}>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputEmail1" pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="col-sm-6 control-label">First
+				<label for="exampleInputEmail1"  class="col-sm-6 control-label">First
 					Name</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="firstName"
+					<input type="text" class="form-control" pattern="(.){1,15}" name="firstName"
 						value=${form.firstName}>
 				</div>
 			</div>
@@ -43,21 +44,21 @@
 				<label for="exampleInputEmail1" class="col-sm-6 control-label">Last
 					Name</label>
 				<div class="col-sm-6">
-					<input type="text" pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control" name="lastName"
+					<input type="text" pattern="(.){1,15}" class="form-control" name="lastName"
 						value=${form.lastName}>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1" class="col-sm-6 control-label">Password</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control" name="password">
+					<input type="password" class="form-control" pattern="(.){1,15}" name="password">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1" class="col-sm-6 control-label">Confirm
 					Password</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control" name="confirm">
+					<input type="password" pattern="(.){1,15}" class="form-control" name="confirm">
 				</div>
 			</div>
 			<div class="form-group">
@@ -74,5 +75,4 @@
 
 </div>
 
-<%-- <jsp:include page="bottom.jsp" /> --%>
 

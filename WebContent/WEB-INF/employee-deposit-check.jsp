@@ -22,7 +22,7 @@
 					<div class="input-group-addon">$</div>
 					<input type="hidden" name="userName"
 						value="${customer.getUserName()}" class="form-control"> <input
-						type="text"  pattern="([[a-zA-Z]\s{0,1}]*){1,15}" class="form-control"
+						type="text"  class="form-control"
 						name="amount" value="1.00" placeholder="at most 2 decimal digits">
 					<!-- <div class="input-group-addon">.00</div> -->
 				</div>
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 		</form>
-		<p style="color: grey">*Please enter a positive number. </p>
+		<p style="color: grey">*The range of deposit check should be $0.01 - $1,000,000. </p>
 		<p style="color: grey">The decimal places should be no more than 2.</p>
 		<br> <br>
 

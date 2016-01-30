@@ -6,8 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import model.CustomerDAO;
-import model.FundDAO;
-import model.FundPriceDAO;
+
 import model.Model;
 import model.PositionDAO;
 import model.TransactionDAO;
@@ -17,8 +16,7 @@ import org.genericdao.Transaction;
 
 import controller.main.Action;
 import databean.CustomerBean;
-import databean.FundBean;
-import databean.FundPriceBean;
+
 import databean.PositionBean;
 import databean.ShareInformationBean;
 

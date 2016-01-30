@@ -112,6 +112,12 @@ public class CustomerBean {
 		return res;
 	}
 
+	public String getFormatCash() {
+		double amount = Double.parseDouble(getCashTwoDecimal());
+		DecimalFormat formatter = new DecimalFormat("#,##0.00");
+		return (formatter.format(amount));
+	}
+
 	public void setCash(long cash) {
 		this.cash = cash;
 	}

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="customer-top.jsp" />
 
 <div class="col-md-2 column"></div>
@@ -36,7 +36,7 @@
 								<th>Fund name</th>
 								<th>Ticker</th>
 								<th style="text-align: right">Shares</th>
-								<th style="text-align:right">Position</th>
+								<th style="text-align:right">Position($)</th>
 								<th>Operation</th>
 							</tr>
 						</thead>
@@ -46,8 +46,10 @@
 									<td><a
 										href="customer_research_fund.do?fundName=${share.getFundName()}">${share.getFundName() }</a></td>
 									<td>${share.getFundSymbol() }</td>
+<!-- 									already format in backend share.getSharesThreeDecimal -->
 									<td align="right">${share.getSharesThreeDecimal()}</td>
-									<td align="right">$ ${share.getAmountTwoDecimal()}</td>
+									<td align="right">
+									 ${share.getAmountFormat()} </td>
 									<!--  <td align="right">${share.getAmountTwoDecimal()}</td>  -->
 									<td>
 									<div class="dropdown">

@@ -15,20 +15,21 @@
 	<jsp:include page="template-result.jsp" />
 	<br></br>
 	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<c:choose>
 		<c:when test="${transactions ==null}">
 			<h5>No transactions.</h5>
 		</c:when>
 		<c:otherwise>
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover"  style="display: block;  height: 500px; overflow-y: scroll">
 				<thead>
 					<tr>
-						<th>Date</th>
+						<th width="15%">Date</th>
 						<th>Fund name</th>
 						<th>Fund Ticker</th>
 						<th style="text-align: right">Shares</th>
-						<th style="text-align: right">Price</th>
-						<th style="text-align: right">Amount</th>
+						<th style="text-align: right">Price($)</th>
+						<th style="text-align: right">Amount($)</th>
 						<th>Type</th>
 						<th>Status</th>
 					</tr>
@@ -39,9 +40,11 @@
                             <td>${transaction.getExecuteDay()}</td>
                             <td>${transaction.getFundName()}</td>
                             <td>${transaction.getFundTicker()}</td>
-                            <td style="text-align:right">${transaction.getShares()}</td>
-                            <td style="text-align:right">${transaction.getPrice()}</td>
-                            <td style="text-align:right">${transaction.getAmount()}</td>
+                            <td style="text-align:right">${transaction.getSharesThreeDecimal()}</td>
+                            <td style="text-align:right">${transaction.getPriceTwoDecimal()}</td>
+                            <td style="text-align:right">
+                             ${transaction.getAmountTwoDecimal()}
+                           </td>
                             <td>${transaction.getTransactionType()}</td>
                             <td>${transaction.getStatus()}</td>
                          </tr>
